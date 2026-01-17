@@ -1,0 +1,66 @@
+@import '@/app/mixins';
+@import 'tailwindcss';
+
+:root {
+	--background: #ffffff;
+	--foreground: #171717;
+}
+
+/*@theme inline {*/
+/*  --color-background: var(--background);*/
+/*  --color-foreground: var(--foreground);*/
+/*  --font-sans: var(--font-geist-sans);*/
+/*  --font-mono: var(--font-geist-mono);*/
+/*}*/
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
+}
+
+body {
+	background: var(--background);
+	color: var(--foreground);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+	font-size: 40px;
+	@include mediaMin('tablet') {
+		font-size: 60px;
+	}
+	@include mediaMin('desktop') {
+		font-size: 80px;
+	}
+}
+
+h2 {
+	font-size: 80px;
+}
+
+h3 {
+	font-size: 60px;
+}
+
+input {
+	border: solid 1px #ccc;
+	border-radius: 10px;
+	background-color: white;
+	color: black;
+	padding: 8px 12px;
+
+	::placeholder {
+		color: #888;
+	}
+}
+
+button, .button {
+	padding: 10px 20px;
+	background-color: teal;
+	border-radius: 10px;
+	color: white;
+
+}
+
