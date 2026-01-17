@@ -6,6 +6,15 @@ import {
     InMemoryCache,
 } from '@apollo/client-integration-nextjs';
 
+import { headers } from 'next/headers';
+
+const getBaseUrl = () => {
+    const h = headers();
+    const host = h.get('host');
+    const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
+    return `${protocol}://${host}`;
+};
+
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
     const link =
         process.env.NODE_ENV === 'development'
@@ -13,7 +22,7 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
                   uri: 'http://localhost:3000/api/graphql',
               })
             :new HttpLink({
-                uri: 'http://localhost:3000/api/graphql',
+                uri: `${getBaseUrl()}/api/graphql`,
             })
 
             // createHttpLink({
