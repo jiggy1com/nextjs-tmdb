@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import { getClient } from '@/app/ApolloClient';
 import { gql } from 'graphql-tag';
