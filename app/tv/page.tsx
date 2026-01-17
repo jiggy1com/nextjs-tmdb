@@ -5,7 +5,9 @@ import { Heading } from '@components/text/Heading';
 export default function TVPage() {
     return (
         <section>
-            <ContainerFluid></ContainerFluid>
+            <ContainerFluid>
+                jumbotron
+            </ContainerFluid>
             <Container>
                 <Heading as="h1">TV</Heading>
                 <p>this is a test</p>
