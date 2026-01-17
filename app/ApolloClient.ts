@@ -14,14 +14,15 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
         !process.env.NEXT_RUNTIME &&
         process.env.VERCEL_ENV === 'production';
     const protocol = isBuild ? 'https' : 'http';
+    const url = `${protocol}://${process.env.VERCEL_URL}/api/graphql`
     const link = new HttpLink({
-                  uri: `${protocol}://${process.env.VERCEL_URL}/api/graphql`,
+                  uri: `${url}`,
                 // credentials: "same-origin",
               })
 
 
     console.log(`Apollo Client Link: /api/graphql`);
-    console.log('VERCEL_URL:', process.env.VERCEL_URL);
+    console.log('uri:', url);
 
     // createHttpLink({
     //       uri: '/api/graphql',
