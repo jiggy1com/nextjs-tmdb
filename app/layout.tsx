@@ -2,6 +2,12 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.scss';
 
+// prevent static optimization to allow dynamic data fetching
+// more specifically, to allow Apollo Client SSR to work properly
+// https://nextjs.org/docs/app/building-your-application/data-fetching/fetching#dynamic-data-fetching
+// won't run at build time
+export const dynamic = 'force-dynamic'
+
 const geistSans = Geist({
     variable: '--font-geist-sans',
     subsets: ['latin'],
