@@ -1,0 +1,16 @@
+@import '@/app/mixins';
+
+.footer {
+	text-align: center;
+	padding: 100px 20px;
+	@include media('tablet') {
+		padding: 100px 40px;
+	}
+	@include media('desktop') {
+		padding: 100px 80px;
+	}
+
+	a {
+		text-decoration: underline;
+	}
+}
