@@ -7,18 +7,21 @@ import {
 } from '@apollo/client-integration-nextjs';
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
-    const link =
-        process.env.NODE_ENV === 'development'
-            ? new HttpLink({
-                  uri: 'http://localhost:3000/api/graphql',
+
+
+    const isBuild =
+        typeof window === 'undefined' &&
+        !process.env.NEXT_RUNTIME &&
+        process.env.VERCEL_ENV === 'production';
+    const protocol = isBuild ? 'https' : 'http';
+    const link = new HttpLink({
+                  uri: `${protocol}://${process.env.VERCEL_URL}/api/graphql`,
                 // credentials: "same-origin",
               })
-            : new HttpLink({
-                  uri: `https://nextjs-tmdb-omega.vercel.app/api/graphql`, // https://${process.env.VERCEL_URL}
-                // credentials: "same-origin",
-              });
 
-    console.log(`Apollo Client Link: https://${process.env.VERCEL_URL}/api/graphql`);
+
+    console.log(`Apollo Client Link: /api/graphql`);
+    console.log('VERCEL_URL:', process.env.VERCEL_URL);
 
     // createHttpLink({
     //       uri: '/api/graphql',
