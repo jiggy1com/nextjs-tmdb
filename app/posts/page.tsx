@@ -14,12 +14,7 @@ type GreetingObj = {
     message: string;
 };
 
-
-
 const Greeting = async (): Promise<React.JSX.Element | React.JSX.Element[]> => {
-
-
-
     const result = await getClient()
         .query<{ greeting: GreetingObj[] }>({
             query: GREETING_QUERY,
