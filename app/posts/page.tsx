@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { getClient } from '@/app/ApolloClient';
 import { gql } from 'graphql-tag';
@@ -15,12 +16,14 @@ type GreetingObj = {
 };
 
 const Greeting = async (): Promise<React.JSX.Element | React.JSX.Element[]> => {
-    const result = await getClient().query<{ greeting: GreetingObj[] }>({
-        query: GREETING_QUERY,
-    }).catch((error) => {
-        console.error('Error fetching greeting:', error);
-        return { data: { greeting: [] } };
-    });
+    const result = await getClient()
+        .query<{ greeting: GreetingObj[] }>({
+            query: GREETING_QUERY,
+        })
+        .catch((error) => {
+            console.error('Error fetching greeting:', error);
+            return { data: { greeting: [] } };
+        });
     const { data } = result;
 
     // if (loading) return <p>Loading...</p>;
