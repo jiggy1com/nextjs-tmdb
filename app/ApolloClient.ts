@@ -16,7 +16,7 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
                   uri: `https://${process.env.VERCEL_URL}/api/graphql`,
               });
 
-    console.log('Apollo Client Link URI:', (link as HttpLink).options.uri);
+    console.log(`Apollo Client Link: https://${process.env.VERCEL_URL}/api/graphql`);
 
     // createHttpLink({
     //       uri: '/api/graphql',
