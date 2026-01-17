@@ -1,19 +1,10 @@
 // https://github.com/apollographql/apollo-client-integrations/tree/main/packages/nextjs
-import { HttpLink, createHttpLink } from '@apollo/client';
+import { HttpLink } from '@apollo/client';
 import {
-    registerApolloClient,
     ApolloClient,
     InMemoryCache,
+    registerApolloClient,
 } from '@apollo/client-integration-nextjs';
-
-import { headers } from 'next/headers';
-
-const getBaseUrl = () => {
-    const h = headers();
-    const host = h.get('host');
-    const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-    return `${protocol}://${host}`;
-};
 
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
     const link =
@@ -21,11 +12,11 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
             ? new HttpLink({
                   uri: 'http://localhost:3000/api/graphql',
               })
-            :new HttpLink({
-                uri: `${getBaseUrl()}/api/graphql`,
-            })
+            : new HttpLink({
+                  uri: `${process.env.VERCEL_URL}/api/graphql`,
+              });
 
-            // createHttpLink({
+    // createHttpLink({
     //       uri: '/api/graphql',
     //   });
 
