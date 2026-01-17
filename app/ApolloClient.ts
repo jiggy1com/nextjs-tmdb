@@ -5,21 +5,19 @@ import {
     InMemoryCache,
     registerApolloClient,
 } from '@apollo/client-integration-nextjs';
+
 export const dynamic = 'force-dynamic';
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
-
-
     const isBuild =
         typeof window === 'undefined' &&
         !process.env.NEXT_RUNTIME &&
         process.env.VERCEL_ENV === 'production';
     const protocol = isBuild ? 'https' : 'http';
-    const url = `${protocol}://${process.env.VERCEL_URL}/api/graphql`
+    const url = `${protocol}://${process.env.VERCEL_URL}/api/graphql`;
     const link = new HttpLink({
-                  uri: `${url}`,
-                // credentials: "same-origin",
-              })
-
+        uri: `${url}?x-vercel-protection-bypass=${process.env.VERCEL_AUTOMATION_BYPASS_SECRET}`,
+        // credentials: "same-origin",
+    });
 
     console.log(`Apollo Client Link: /api/graphql`);
     console.log('uri:', url);
