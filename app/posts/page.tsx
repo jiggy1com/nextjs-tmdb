@@ -14,7 +14,6 @@ type GreetingObj = {
     message: string;
 };
 
-export const dynamic = 'force-dynamic'
 
 
 const Greeting = async (): Promise<React.JSX.Element | React.JSX.Element[]> => {
@@ -25,11 +24,11 @@ const Greeting = async (): Promise<React.JSX.Element | React.JSX.Element[]> => {
         .query<{ greeting: GreetingObj[] }>({
             query: GREETING_QUERY,
         })
-        // .catch((error) => {
-        //     console.error('Error fetching greeting:', error);
-        //     console.log('error fetching greeting:', error);
-        //     return { data: { greeting: [] } };
-        // });
+        .catch((error) => {
+            console.error('Error fetching greeting:', error);
+            console.log('error fetching greeting:', error);
+            return { data: { greeting: [] } };
+        });
     const { data } = result;
 
     // if (loading) return <p>Loading...</p>;
