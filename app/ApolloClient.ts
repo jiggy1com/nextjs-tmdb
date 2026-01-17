@@ -5,7 +5,7 @@ import {
     InMemoryCache,
     registerApolloClient,
 } from '@apollo/client-integration-nextjs';
-
+export const dynamic = 'force-dynamic';
 export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
 
 
