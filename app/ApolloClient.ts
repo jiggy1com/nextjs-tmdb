@@ -15,6 +15,7 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
     const protocol = isBuild ? 'https' : 'http';
     const url = `${protocol}://${process.env.VERCEL_URL}/api/graphql`;
     const link = new HttpLink({
+        // uri: 'http://localhost:3000/api/graphql',
         uri: `${url}?x-vercel-protection-bypass=${process.env.VERCEL_AUTOMATION_BYPASS_SECRET}`,
         // credentials: "same-origin",
     });
@@ -29,6 +30,16 @@ export const { getClient, query, PreloadQuery } = registerApolloClient(() => {
     return new ApolloClient({
         cache: new InMemoryCache(),
         link,
+        defaultOptions: {
+            watchQuery: {
+                fetchPolicy: 'no-cache', // Bypasses cache, always network, doesn't write to cache
+                errorPolicy: 'ignore',
+            },
+            query: {
+                fetchPolicy: 'no-cache', // Bypasses cache, always network, doesn't write to cache
+                errorPolicy: 'all',
+            },
+        },
         // link: createHttpLink({
         // 	uri: "/api/graphql",
         // }),

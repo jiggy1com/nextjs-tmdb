@@ -45,3 +45,4 @@ next-env.d.ts
 
 # ide files
 .idea
+/app/api/graphql/generated/

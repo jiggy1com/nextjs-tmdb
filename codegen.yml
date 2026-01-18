@@ -1,0 +1,35 @@
+overwrite: true
+schema: "app/api/graphql/schemas/**/*.graphql"
+documents: "app/api/graphql/queries/**/*.graphql"
+generates:
+  app/api/graphql/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+      - "typescript-operations"
+      - "typed-document-node"
+    config:
+      preResolveTypes: true
+  # This is an alternative way to generate the schema as SDL in a .ts file
+  # but did not wrap everything in gql`` template literal correctly
+  #  app/api/graphql/generated/schema.ts:
+  #    plugins:
+  #      - typescript
+  #      - typescript-document-nodes
+
+# I swear this worked once, but then mostly never worked correctly
+# the schema-ast content is always appended after the template literal closes
+#  app/api/graphql/generated/schema.ts:
+#    plugins:
+#      # prepend import + template literal opening
+#      - add:
+#          content: |
+#            import { gql } from 'graphql-tag';
+#            export const typeDefs = gql`
+#      # generate SDL from all schema files
+#      - schema-ast:
+#          commentDescriptions: true
+#          includeDirectives: true
+#      # append closing backtick
+#      - add:
+#          content: "`;"
