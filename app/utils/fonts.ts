@@ -22,7 +22,6 @@ export const fontRockSalt = Rock_Salt({
 
 export const fontPlaywriteUSTrad = Playwrite_US_Trad({
     weight: ['400'],
-    subsets: ['latin'],
     variable: '--font-playwrite-us-trad',
 });
 

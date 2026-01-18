@@ -1,36 +1,32 @@
+import { NextRequest } from 'next/server';
 import { startServerAndCreateNextHandler } from '@as-integrations/next';
 import { ApolloServer } from '@apollo/server';
-import { gql } from 'graphql-tag';
+import { makeExecutableSchema } from '@graphql-tools/schema';
 
-const resolvers = {
-    Query: {
-        hello: () => 'world',
-        greeting: () => [
-            {
-                message: 'Hello 1',
-            },
-            {
-                message: 'Hello 2',
-            },
-        ],
-    },
-};
+// typeDefs & resolvers should be ALL of 'em when building
+// the schema for Apollo Server
+import { typeDefs } from './generated/schema';
+import { resolvers } from './generated/resolvers';
 
-const typeDefs = gql`
-    type GreetingType {
-        message: String
-    }
-    type Query {
-        hello: String
-        greeting: [GreetingType]
-    }
-`;
-
-const server = new ApolloServer({
+const schema = makeExecutableSchema({
+    typeDefs, //: Object.values(schemaNodes),
     resolvers,
-    typeDefs,
 });
 
-const handler = startServerAndCreateNextHandler(server);
+const server = new ApolloServer({
+    schema,
+    // resolvers,
+    // typeDefs,
+});
 
-export { handler as GET, handler as POST };
+const handler = startServerAndCreateNextHandler<NextRequest>(server, {
+    context: async (req) => ({ req }),
+});
+
+export async function GET(request: NextRequest) {
+    return handler(request);
+}
+
+export async function POST(request: NextRequest) {
+    return handler(request);
+}

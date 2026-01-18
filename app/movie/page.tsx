@@ -5,7 +5,9 @@ import { Container } from '@components/container/Container';
 export default function MoviePage() {
     return (
         <section>
-            <ContainerFluid></ContainerFluid>
+            <ContainerFluid>
+                jumbotron
+            </ContainerFluid>
             <Container>
                 <Heading as="h1">Movies</Heading>
                 <p>this is a test</p>

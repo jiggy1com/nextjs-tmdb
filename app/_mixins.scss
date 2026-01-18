@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // if you change the breakpoints here also make sure to update breakpoints.ts
 $breakpointMap: (
 		mobile: (
@@ -27,7 +29,7 @@ $breakpointMap: (
 );
 
 @function getBreakpoint($breakpoint, $type) {
-	@return map-get(map-get($breakpointMap, $breakpoint), $type);
+	@return map.get(map.get($breakpointMap, $breakpoint), $type);
 }
 
 @function getBreakpointMin($breakpoint) {

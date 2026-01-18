@@ -1,0 +1,11 @@
+import { doGet } from '../resolverUtils/resolverHelper';
+
+export const movie = {
+    Query: {
+        // this endpoint returns a single latest movie object
+        // intended for dev purposes only, not for production use
+        getMovieLatest: async () => {
+            return await doGet('movie/latest');
+        },
+    },
+};

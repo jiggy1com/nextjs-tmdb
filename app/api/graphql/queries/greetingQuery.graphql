@@ -1,0 +1,9 @@
+query GreetingQuery {
+    greeting {
+        message
+    }
+}
+
+type Greeting {
+    message: String
+}

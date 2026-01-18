@@ -1,9 +1,9 @@
 // https://www.google.com/search?q=add+external+api+with+credentials+as+datasource+for+graphql+consumption
 import { RESTDataSource } from '@apollo/datasource-rest';
 
-const API_HOST = '';
-const API_KEY = '';
-const API_READ_ACCESS_TOKEN = '';
+const API_HOST = process.env.API_HOST;
+const API_KEY = process.env.API_KEY;
+const API_READ_ACCESS_TOKEN = process.env.API_READ_ACCESS_TOKEN;
 
 class TMDBAPI extends RESTDataSource {
     baseURL = API_HOST;

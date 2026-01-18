@@ -1,0 +1,56 @@
+# if query needs arguments, then :
+# query MovieDetails($id: ID!) {
+#    movie(id: $id) {
+
+# In "query GetMovieLatest" the "GetMovieLatest" is technically optional,
+# and is mostly for debugging, tooling, and caching
+query GetMovieLatest {
+    getMovieLatest {
+        adult
+        backdropPath
+        belongsToCollection {
+            id
+            name
+            posterPath
+            backdropPath
+        }
+        budget
+        genres {
+            id
+            name
+        }
+        homepage
+        id
+        imdbId
+        originCountry
+        originalLanguage
+        originalTitle
+        overview
+        popularity
+        posterPath
+        productionCompanies {
+            id
+            name
+            logoPath
+            originCountry
+        }
+        productionCountries {
+            iso3166_1
+            name
+        }
+        releaseDate
+        revenue
+        runtime
+        spokenLanguages {
+            englishName
+            iso639_1
+            name
+        }
+        status
+        tagline
+        title
+        video
+        voteAverage
+        voteCount
+    }
+}

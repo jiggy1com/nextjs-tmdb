@@ -1,0 +1,16 @@
+type GreetingObj  {
+    message: String
+}
+
+type GreetingType {
+    message: String
+}
+
+# resolverHandler: return type
+type Query {
+    hello: String
+    greeting: [GreetingType]
+    GreetingQuery: [GreetingObj]
+    getMovieLatest: Movie
+    movie: Movie
+}
