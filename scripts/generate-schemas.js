@@ -23,8 +23,7 @@ if (!schemaFiles.length) {
 const rawSchema = schemaFiles.map((file) => fs.readFileSync(file, 'utf-8')).join('\n\n');
 
 // Wrap in gql template literal
-const fileContent = `
-// @generated
+const fileContent = `// @generated
 // This file is auto-generated for Apollo Server only. Do not import elsewhere.
 // eslint-disable
 

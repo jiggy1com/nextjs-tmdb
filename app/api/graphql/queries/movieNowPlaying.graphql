@@ -1,0 +1,22 @@
+query GetNowPlaying {
+    getNowPlaying {
+        results {
+            adult
+            backdropPath
+            genreIds
+            id
+            originalLanguage
+            originalTitle
+            overview
+            popularity
+            posterPath
+            releaseDate
+            title
+            video
+            voteAverage
+            voteCount
+        }
+        total_pages
+        total_results
+    }
+}
