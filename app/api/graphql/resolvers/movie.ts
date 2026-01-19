@@ -13,5 +13,11 @@ export const movie = {
         getPopular: async () => {
             return await doGet('movie/popular');
         },
+        getTopRated: async () => {
+            return await doGet('movie/top_rated');
+        },
+        getUpcoming: async () => {
+            return await doGet('movie/upcoming');
+        },
     },
 };
