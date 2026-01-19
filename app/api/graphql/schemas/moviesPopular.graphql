@@ -1,12 +1,11 @@
-type GetNowPlayingResponse {
-    # TODO: consider making results non-nullable to deal with pagination properly
-    results: [GetNowPlaying]
+type GetPopularResponse {
+    results: [GetPopular]
     page: Int
     total_pages: Int
     total_results: Int
 }
 
-type GetNowPlaying {
+type GetPopular {
     adult: Boolean
     backdropPath: String
     genreIds: [Int]
@@ -24,5 +23,5 @@ type GetNowPlaying {
 }
 
 extend type Query {
-    getNowPlaying: GetNowPlayingResponse
+    getPopular: GetPopularResponse
 }

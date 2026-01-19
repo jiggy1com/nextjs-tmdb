@@ -10,5 +10,8 @@ export const movie = {
         getNowPlaying: async () => {
             return await doGet('movie/now_playing');
         },
+        getPopular: async () => {
+            return await doGet('movie/popular');
+        },
     },
 };

@@ -12,7 +12,7 @@ export default function NowPlayingPage() {
     return (
         <Container>
             <Heading as={'h1'}>Now Playing Movies</Heading>
-            API Data:
+            CLIENT side API Data:
             <pre>{JSON.stringify(data, null, 2)}</pre>
         </Container>
     );
