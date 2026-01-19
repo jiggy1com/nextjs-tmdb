@@ -14,8 +14,8 @@ const defaultConfig: RequestConfig = {
 
 type bodyType = Record<string, unknown>;
 
-export const doGet = async (endpoint: string = '') => {
-    return await resolverHelper(endpoint, { ...defaultConfig });
+export const doGet = async (endpoint: string = '', args: undefined | object = undefined) => {
+    return await resolverHelper(endpoint, { ...defaultConfig }, args);
 };
 
 export const doPost = async (endpoint: string = '', body: bodyType = {}) => {
@@ -27,9 +27,21 @@ export const doPost = async (endpoint: string = '', body: bodyType = {}) => {
     return await resolverHelper(endpoint, config);
 };
 
-const resolverHelper = async (endpoint: string = '', config: RequestConfig) => {
+const resolverHelper = async (
+    endpoint: string = '',
+    config: RequestConfig,
+    queryParams: undefined | object = undefined,
+) => {
     const url = new URL(`${process.env.API_HOST}${endpoint}`);
     url.searchParams.append('api_key', process.env.API_KEY || '');
+
+    if (queryParams) {
+        Object.entries(queryParams as Record<string, unknown>).forEach(([param, value]) => {
+            if (value !== undefined) {
+                url.searchParams.append(param, String(value));
+            }
+        });
+    }
 
     console.log(`Fetching from URL: ${url.toString()}`);
     console.log(`Fetching with config: ${JSON.stringify(config)}`);

@@ -1,5 +1,7 @@
 import { doGet } from '../resolverUtils/resolverHelper';
 
+// parent, args, context, info
+
 export const movie = {
     Query: {
         // this endpoint returns a single latest movie object
@@ -16,8 +18,9 @@ export const movie = {
         getTopRated: async () => {
             return await doGet('movie/top_rated');
         },
-        getUpcoming: async () => {
-            return await doGet('movie/upcoming');
+        getUpcoming: async (_, args) => {
+            console.log('getUpcoming args:', args);
+            return await doGet('movie/upcoming', args);
         },
     },
 };
