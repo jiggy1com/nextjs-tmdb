@@ -37,7 +37,7 @@ export default function LatestPage() {
                 </p>
                 <pre>{pre}</pre>
                 <p>
-                    Here is an example of the data returned from{' '}
+                    Here is an example of the data returned from CLIENT side.{' '}
                     <code>useQuery(GetMovieLatestDocument)</code>
                 </p>
 

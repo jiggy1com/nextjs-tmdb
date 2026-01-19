@@ -4,12 +4,17 @@
 # The return type is defined in the schemas
 #}
 
-
+# all combined typeQueries.graphql
 type Query {
     hello: String
     greeting: [GreetingType]
     movie: Movie
     GreetingQuery: [GreetingObj]
     getMovieLatest: Movie
-    getNowPlaying: GetNowPlayingResponse
+    #    getNowPlaying: GetNowPlayingResponse
 }
+
+# The alternative to the above approach is to have subsets of type Query in each schema file.
+# The generated schema would then combine them all into one schema.
+# extend type Query { <resolverHandlerName: returnType> }
+# An example is in ./schemas/moviesNowPlaying.graphql

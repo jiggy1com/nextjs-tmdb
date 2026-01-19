@@ -22,3 +22,7 @@ type GetNowPlaying {
     voteAverage: Float
     voteCount: Int
 }
+
+extend type Query {
+    getNowPlaying: GetNowPlayingResponse
+}
