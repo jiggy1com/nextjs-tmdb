@@ -1,0 +1,27 @@
+type GetTopRatedResponse {
+    results: [GetTopRated]
+    page: Int
+    total_pages: Int
+    total_results: Int
+}
+
+type GetTopRated {
+    adult: Boolean
+    backdropPath: String
+    genreIds: [Int]
+    id: Int
+    originalLanguage: String
+    originalTitle: String
+    overview: String
+    popularity: Float
+    posterPath: String
+    releaseDate: String
+    title: String
+    video: Boolean
+    voteAverage: Float
+    voteCount: Int
+}
+
+extend type Query {
+    getTopRated: GetTopRatedResponse
+}
