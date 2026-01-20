@@ -23,5 +23,5 @@ type GetUpcoming {
 }
 
 extend type Query {
-    getUpcoming: GetUpcomingResponse
+    getUpcoming(page: Int): GetUpcomingResponse
 }

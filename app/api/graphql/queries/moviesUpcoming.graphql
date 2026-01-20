@@ -1,5 +1,5 @@
-query GetUpcoming {
-    getUpcoming {
+query GetUpcoming($page: Int) {
+    getUpcoming(page: $page) {
         results {
             adult
             backdropPath

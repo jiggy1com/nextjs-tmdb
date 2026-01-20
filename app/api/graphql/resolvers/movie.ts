@@ -1,4 +1,13 @@
 import { doGet } from '../resolverUtils/resolverHelper';
+import { GetUpcomingResponse } from '@/app/api/graphql/generated/graphql';
+
+// parent, args, context, info
+
+type anyParentType = unknown;
+
+type getUpcomingArgs = {
+    page?: number;
+};
 
 export const movie = {
     Query: {
@@ -16,8 +25,9 @@ export const movie = {
         getTopRated: async () => {
             return await doGet('movie/top_rated');
         },
-        getUpcoming: async () => {
-            return await doGet('movie/upcoming');
+        getUpcoming: async (_: unknown, args: getUpcomingArgs): Promise<GetUpcomingResponse> => {
+            console.log('getUpcoming args:', args);
+            return await doGet<GetUpcomingResponse>('movie/upcoming', args);
         },
     },
 };

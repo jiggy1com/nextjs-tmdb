@@ -1,10 +1,21 @@
+// type RequestConfig = {
+//     method: string;
+//     headers: {
+//         'Content-Type': string;
+//     };
+//     body?: string;
+// };
+
 type RequestConfig = {
-    method: string;
+    method: 'GET' | 'POST' | 'PUT' | 'DELETE';
     headers: {
         'Content-Type': string;
     };
     body?: string;
 };
+type QueryParams = Record<string, string | number | boolean | undefined> | undefined;
+type BodyType = Record<string, unknown>;
+
 const defaultConfig: RequestConfig = {
     method: 'GET',
     headers: {
@@ -12,24 +23,34 @@ const defaultConfig: RequestConfig = {
     },
 };
 
-type bodyType = Record<string, unknown>;
-
-export const doGet = async (endpoint: string = '') => {
-    return await resolverHelper(endpoint, { ...defaultConfig });
+export const doGet = async <T = unknown>(endpoint: string = '', args?: QueryParams): Promise<T> => {
+    return (await resolverHelper(endpoint, { ...defaultConfig }, args)) as Promise<T>;
 };
 
-export const doPost = async (endpoint: string = '', body: bodyType = {}) => {
+export const doPost = async <T = unknown>(endpoint: string = '', body: BodyType = {}) => {
     const config = {
         ...defaultConfig,
         method: 'POST',
         body: JSON.stringify(body),
-    };
-    return await resolverHelper(endpoint, config);
+    } as RequestConfig;
+    return await resolverHelper<T>(endpoint, config, {});
 };
 
-const resolverHelper = async (endpoint: string = '', config: RequestConfig) => {
+const resolverHelper = async <T>(
+    endpoint: string = '',
+    config: RequestConfig,
+    queryParams: QueryParams,
+) => {
     const url = new URL(`${process.env.API_HOST}${endpoint}`);
     url.searchParams.append('api_key', process.env.API_KEY || '');
+
+    if (queryParams) {
+        Object.entries(queryParams as Record<string, unknown>).forEach(([param, value]) => {
+            if (value !== undefined) {
+                url.searchParams.append(param, String(value));
+            }
+        });
+    }
 
     console.log(`Fetching from URL: ${url.toString()}`);
     console.log(`Fetching with config: ${JSON.stringify(config)}`);
@@ -40,68 +61,5 @@ const resolverHelper = async (endpoint: string = '', config: RequestConfig) => {
         throw new Error(`Failed to fetch data from ${endpoint}`);
     }
 
-    return await res.json();
+    return (await res.json()) as T;
 };
-
-// // method: 'POST', // Must specify POST
-// //     headers: {
-// //     'Content-Type': 'application/json', // Sending JSON
-// // },
-// // body: JSON.stringify({
-// //     title: 'New Movie',
-// //     releaseDate: '2026-01-17',
-// // }),
-//
-// const defaultOptions = {
-//     method: 'GET',
-//     headers: {
-//         'Content-Type': 'application/json',
-//     },
-// };
-//
-// export const doGet = async (endpoint: string) => {
-//     return await resolverHelper(endpoint, { ...defaultOptions });
-// };
-//
-// export const doPost = async (endpoint: string, body: Record<string, unknown>) => {
-//     const config = {
-//         ...defaultOptions,
-//         method: 'POST',
-//         body: JSON.stringify(body),
-//     };
-//     return await resolverHelper(endpoint, config);
-// };
-//
-// type ResolverHelper = (endpoint: string, config?: RequestInit | null) => Promise<unknown>;
-// const resolverHelper: ResolverHelper = async (endpoint = '', config?: RequestInit) => {
-//     const url = new URL(`${process.env.API_HOST}${endpoint}`);
-//     url.searchParams.append('api_key', process.env.API_KEY || '');
-//
-//     console.log(`Fetching from URL: ${url.toString()}`);
-//     console.log(`Fetching with config: ${JSON.stringify(config)}`);
-//
-//     const res = await fetch(url.toString(), config);
-//
-//     if (!res.ok) {
-//         throw new Error(`Failed to fetch data from ${endpoint}`);
-//     }
-//
-//     const data = await res.json();
-//     return data;
-// };
-// // const resolverHelper: ResolverHelper = async (endpoint = '', config = null) => {
-// //     const url = new URL(`${process.env.API_HOST}${endpoint}`);
-// //     url.searchParams.append('api_key', process.env.API_KEY || '');
-// //
-// //     console.log(`Fetching from URL: ${url.toString()}`);
-// //     console.log(`Fetching with config: ${JSON.stringify(config)}`);
-// //
-// //     const res = await fetch(url.toString(), config);
-// //
-// //     if (!res.ok) {
-// //         throw new Error(`Failed to fetch data from ${endpoint}`);
-// //     }
-// //
-// //     const data = await res.json();
-// //     return data;
-// // };
