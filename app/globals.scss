@@ -27,7 +27,7 @@ body {
 }
 
 main a {
-	
+
 	text-decoration: underline;
 }
 
@@ -74,10 +74,24 @@ input {
 }
 
 button, .button {
+	cursor: pointer;
 	padding: 10px 20px;
 	background-color: teal;
 	border-radius: 10px;
 	color: white;
+
+	&.info {
+		background-color: lightblue;
+	}
+
+	&.primary {
+		background-color: blue;
+	}
+
+	&.disabled, &:disabled {
+		background-color: gray;
+		cursor: not-allowed;
+	}
 
 }
 

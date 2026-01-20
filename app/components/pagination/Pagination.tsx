@@ -1,13 +1,13 @@
 'use client';
 import React, { useMemo } from 'react';
+import { ContainerFluid } from '@components/container/ContainerFluid';
 import { PaginationProvider, usePagination } from './PaginationContext';
-
-import { Container } from '@components/container/Container';
 import { PaginationPagesList } from '@components/pagination/PaginationPagesList';
 import { PaginationNext } from '@components/pagination/PaginationNext';
 import { PaginationFirst } from '@components/pagination/PaginationFirst';
 import { PaginationPrev } from '@components/pagination/PaginationPrev';
 import { PaginationLast } from '@components/pagination/PaginationLast';
+import styles from './Pagination.module.scss';
 
 const PaginationControllerInner = () => {
     const { page, totalPages, perPage, totalResults } = usePagination();
@@ -24,13 +24,15 @@ const PaginationControllerInner = () => {
     if (page === 0) return <span />;
 
     return (
-        <Container>
-            <PaginationFirst />
-            <PaginationPrev />
-            <PaginationPagesList pageArray={pageArray} />
-            <PaginationNext />
-            <PaginationLast />
-        </Container>
+        <ContainerFluid>
+            <div className={styles.pagination}>
+                <PaginationFirst />
+                <PaginationPrev />
+                <PaginationPagesList pageArray={pageArray} />
+                <PaginationNext />
+                <PaginationLast />
+            </div>
+        </ContainerFluid>
     );
 };
 
@@ -40,6 +42,7 @@ type PaginationControllerProps = {
     totalResults?: number;
     perPage?: number;
     notifyParent?: (data: { page: number }) => void;
+    baseUrl?: string;
 };
 const Pagination = (
     props: PaginationControllerProps = {
@@ -48,6 +51,7 @@ const Pagination = (
         totalResults: 0,
         perPage: 20,
         notifyParent: () => {},
+        baseUrl: '',
     },
 ) => (
     <PaginationProvider {...props}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { usePagination } from './PaginationContext';
+import Link from 'next/link';
 
 type PaginationPagesListItemProps = {
     pageNumber: number;
@@ -9,13 +10,15 @@ const PaginationPagesListItem = (
         pageNumber: 1,
     },
 ) => {
-    const { page, goToPage } = usePagination();
-    const thisClass = page === pageNumber ? 'btn btn-info' : 'btn btn-primary';
-
+    const { page, baseUrl, goToPage } = usePagination();
+    const thisClass = `button ${page === pageNumber ? 'info' : 'primary'}`;
     return (
-        <button className={thisClass} onClick={() => goToPage(pageNumber)}>
+        <Link href={`${baseUrl}/${pageNumber}`} className={thisClass}>
             {pageNumber}
-        </button>
+        </Link>
+        // <button className={thisClass} onClick={() => goToPage(pageNumber)}>
+        //     {pageNumber}
+        // </button>
     );
 };
 

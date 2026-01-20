@@ -15,11 +15,11 @@ export const PaginationPagesList = (
     if (!pageArray.length) return <span />;
 
     return (
-        <span>
+        <>
             {pageArray.map((pageNumber: number) => (
                 <PaginationPagesListItem key={pageNumber} pageNumber={pageNumber} />
             ))}
-        </span>
+        </>
     );
 };
 

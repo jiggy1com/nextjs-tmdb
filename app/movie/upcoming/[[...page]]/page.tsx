@@ -1,8 +1,10 @@
 import { getClient } from '@/app/ApolloClient';
-import { GetUpcomingDocument } from '@/app/api/graphql/generated/graphql';
+import { GetUpcomingDocument, GetUpcomingQuery } from '@/app/api/graphql/generated/graphql';
 import { Heading } from '@components/text/Heading';
 import { Container } from '@components/container/Container';
 import Pagination from '@components/pagination/Pagination';
+import { ApolloClient } from '@apollo/client';
+import QueryResult = ApolloClient.QueryResult;
 
 export default async function MovieUpcomingPage({
     params,
@@ -13,7 +15,7 @@ export default async function MovieUpcomingPage({
     const resolvedParams = await params;
 
     // grab the first segment or default
-    const page = resolvedParams.page?.[0] ?? '1';
+    const page = parseInt(resolvedParams.page?.[0] ?? '1');
 
     console.log('resolvedParams:', resolvedParams);
     console.log('page:', page);
@@ -22,45 +24,43 @@ export default async function MovieUpcomingPage({
         .query({
             query: GetUpcomingDocument,
             variables: {
-                page: parseInt(page),
+                page: page,
             },
             fetchPolicy: 'no-cache',
         })
         .catch((err) => {
             console.log('MoviesUpcomingPage:err', err);
             return {
-                result: {
-                    data: {
-                        getUpcoming: {
-                            results: [],
-                            total_pages: 0,
-                            total_results: 0,
-                        },
+                data: {
+                    getUpcoming: {
+                        results: [],
+                        total_pages: 0,
+                        total_results: 0,
                     },
                 },
-            };
+                loading: false,
+                networkStatus: 7,
+                error: undefined,
+            } as QueryResult<GetUpcomingQuery>;
         });
     const data = { result };
 
     console.log('data', data);
 
-    // const [state, setState] = useState({
-    //     currentPage: 1,
-    //     total_pages: data?.result?.data?.getUpcoming?.total_pages ?? 0,
-    //     total_results: data?.result?.data?.getUpcoming?.total_results ?? 0,
-    // });
+    const baseUrl = '/movie/upcoming';
 
     return (
         <Container>
             <Heading as={'h1'}>Upcoming Movies</Heading>
 
             <div>param page: {page}</div>
-            <div>total pages: {data.result.data.getUpcoming.total_pages}</div>
+            <div>total pages: {data?.result?.data?.getUpcoming?.total_pages}</div>
             <div>SERVER side API Data:</div>
             <Pagination
-                totalPages={data.result.data.getUpcoming.total_pages}
-                totalResults={data.result.data.getUpcoming.total_results}
-                initialPage={1}
+                baseUrl={baseUrl}
+                totalPages={data?.result?.data?.getUpcoming?.total_pages ?? 0}
+                totalResults={data?.result?.data?.getUpcoming?.total_results ?? 0}
+                initialPage={page ?? 0}
             />
             <pre>{JSON.stringify(data, null, 2)}</pre>
         </Container>
