@@ -26,8 +26,13 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-main a {
+header {
+	position: sticky;
+	top: 0;
+	background-color: black;
+}
 
+main a {
 	text-decoration: underline;
 }
 
