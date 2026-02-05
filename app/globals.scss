@@ -26,40 +26,16 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-main a {
+header {
+	position: sticky;
+	top: 0;
+	background-color: black;
+}
 
+main a {
 	text-decoration: underline;
 }
 
-h1 {
-	font-size: 30px;
-	@include mediaMin('tablet') {
-		font-size: 50px;
-	}
-	@include mediaMin('desktop') {
-		font-size: 80px;
-	}
-}
-
-h2 {
-	font-size: 30px;
-	@include mediaMin('tablet') {
-		font-size: 45px;
-	}
-	@include mediaMin('desktop') {
-		font-size: 60px;
-	}
-}
-
-h3 {
-	font-size: 20px;
-	@include mediaMin('tablet') {
-		font-size: 30px;
-	}
-	@include mediaMin('desktop') {
-		font-size: 40px;
-	}
-}
 
 input {
 	border: solid 1px #ccc;
@@ -81,11 +57,13 @@ button, .button {
 	color: white;
 
 	&.info {
-		background-color: lightblue;
+		background-color: lightseagreen;
+		//background-color: #E9B949;
 	}
 
 	&.primary {
-		background-color: blue;
+		//background-color: #0B2545;
+		background-color: #102A43;
 	}
 
 	&.disabled, &:disabled {

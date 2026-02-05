@@ -1,0 +1,42 @@
+@use '@/app/mixins' as *;
+
+.movieListItem {
+	img {
+		border-radius: 10px;
+		box-shadow: 0 0 30px black;
+		margin-bottom: 30px;
+	}
+
+	a {
+		color: black;
+		text-decoration: none;
+
+		.textContainer {
+			padding: 10px 10px 20px 10px;
+		}
+
+		.title {
+			font-size: 18px;
+			line-height: 1;
+			@include mediaMin('tablet') {
+				font-size: 22px;
+			}
+			@include mediaMin('desktop') {
+				font-size: 26px;
+			}
+		}
+
+		.releaseDate {
+			font-size: 14px;
+			color: darkgray;
+		}
+
+		.rating {
+			font-size: 14px;
+			color: darkgray;
+		}
+
+	}
+
+
+}

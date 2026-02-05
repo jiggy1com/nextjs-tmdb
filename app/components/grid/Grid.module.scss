@@ -1,0 +1,19 @@
+@use '@/app/mixins' as *;
+
+.grid {
+	display: grid;
+	gap: 10px;
+	grid-auto-rows: 1fr;
+	grid-template-columns: repeat(2, 1fr);
+	//align-items: start;
+	align-items: stretch;
+
+	@include mediaMin('tablet') {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	@include mediaMin('desktop') {
+		grid-template-columns: repeat(6, 1fr);
+	}
+
+}

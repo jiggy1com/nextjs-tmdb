@@ -1,0 +1,87 @@
+type Movie {
+    adult: Boolean!           # Defaults to true
+    backdrop_path: String
+    belongs_to_collection: String
+    budget: Int!              # Defaults to 0
+    genres: [Genre!]!
+    homepage: String
+    id: Int!                  # Defaults to 0
+    imdb_id: String
+    original_language: String
+    original_title: String
+    overview: String
+    popularity: Float!        # Defaults to 0
+    poster_path: String
+    production_companies: [ProductionCompany!]!
+    production_countries: [ProductionCountry!]!
+    release_date: String
+    revenue: Int!             # Defaults to 0
+    runtime: Int!             # Defaults to 0
+    spoken_languages: [SpokenLanguage!]!
+    status: String
+    tagline: String
+    title: String
+    video: Boolean!           # Defaults to true
+    vote_average: Float!      # Defaults to 0
+    vote_count: Int!          # Defaults to 0
+}
+
+type Genre {
+    id: Int!                  # Defaults to 0
+    name: String
+}
+
+type ProductionCompany {
+    id: Int!                  # Defaults to 0
+    logo_path: String
+    name: String
+    origin_country: String
+}
+
+type ProductionCountry {
+    iso_3166_1: String
+    name: String
+}
+
+type SpokenLanguage {
+    english_name: String
+    iso_639_1: String
+    name: String
+}
+
+
+type GetMovieDetailsResponse {
+    adult: Boolean!           # Defaults to true
+    backdrop_path: String
+    belongs_to_collection: String
+    budget: Int!              # Defaults to 0
+    genres: [Genre!]!
+    homepage: String
+    id: Int!                  # Defaults to 0
+    imdb_id: String
+    original_language: String
+    original_title: String
+    overview: String
+    popularity: Float!        # Defaults to 0
+    poster_path: String
+    production_companies: [ProductionCompany!]!
+    production_countries: [ProductionCountry!]!
+    release_date: String
+    revenue: Int!             # Defaults to 0
+    runtime: Int!             # Defaults to 0
+    spoken_languages: [SpokenLanguage!]!
+    status: String
+    tagline: String
+    title: String
+    video: Boolean!           # Defaults to true
+    vote_average: Float!      # Defaults to 0
+    vote_count: Int!          # Defaults to 0
+}
+
+#type getMovieDetailsArgs {
+#    id: Int!
+#}
+
+extend type Query {
+    getMovieDetails(id: Int): GetMovieDetailsResponse!
+}

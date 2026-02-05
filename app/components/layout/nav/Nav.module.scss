@@ -64,7 +64,10 @@
 				position: absolute;
 				top: 64px;
 				width: 90vw;
-				border-radius: 10px;
+				border-radius: 0 10px 10px 0;
+				border: solid 1px black;
+				box-shadow: 0 0 30px black;
+
 			}
 		}
 	}

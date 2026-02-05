@@ -1,4 +1,11 @@
-import { Poiret_One, Ubuntu, Rock_Salt, Playwrite_US_Trad, Merienda } from 'next/font/google';
+import {
+    Poiret_One,
+    Ubuntu,
+    Rock_Salt,
+    Playwrite_US_Trad,
+    Merienda,
+    Zalando_Sans,
+} from 'next/font/google';
 // import {Geist, Geist_Mono} from 'next/font/google'
 // import {Material_Symbols_Outlined} from 'next/font/google'
 
@@ -29,6 +36,12 @@ export const fontMerienda = Merienda({
     weight: ['400', '700'],
     subsets: ['latin'],
     variable: '--font-merienda',
+});
+
+export const fontZalandoSans = Zalando_Sans({
+    weight: ['300', '400', '500', '600', '700'],
+    subsets: ['latin'],
+    variable: '--font-zalando-sans',
 });
 
 // export const fontGeistSans = Geist({

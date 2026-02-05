@@ -1,0 +1,13 @@
+@use '@/app/mixins' as *;
+
+.movieList {
+	grid-template-columns: repeat(2, 1fr);
+
+	@include mediaMin('tablet') {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	@include mediaMin('desktop') {
+		grid-template-columns: repeat(5, 1fr);
+	}
+}

@@ -1,7 +1,7 @@
-type Movie {
+type GetMovieLatestResponse {
     adult: Boolean
     backdropPath: String
-    belongsToCollection: Collection
+    belongsToCollection: GetMovieLatestCollection
     budget: Int
     genres: [Genre]
     homepage: String
@@ -13,12 +13,12 @@ type Movie {
     overview: String
     popularity: Float
     posterPath: String
-    productionCompanies: [ProductionCompany]
-    productionCountries: [ProductionCountry]
+    productionCompanies: [GetMovieLatestProductionCompany]
+    productionCountries: [GetMovieLatestProductionCountry]
     releaseDate: String
     revenue: Int
     runtime: Int
-    spokenLanguages: [SpokenLanguage]
+    spokenLanguages: [GetMovieLatestSpokenLanguage]
     status: String
     tagline: String
     title: String
@@ -27,32 +27,37 @@ type Movie {
     voteCount: Int
 }
 
-type SpokenLanguage {
+type GetMovieLatestSpokenLanguage {
     englishName: String
     iso639_1: String
     name: String
 }
 
-type Genre {
+type GetMovieLatestGenre {
     id: Int
     name: String
 }
 
-type ProductionCompany {
+type GetMovieLatestProductionCompany {
     id: Int
     name: String
     logoPath: String
     originCountry: String
 }
 
-type ProductionCountry {
+type GetMovieLatestProductionCountry {
     iso3166_1: String
     name: String
 }
 
-type Collection {
+type GetMovieLatestCollection {
     id: Int
     name: String
     posterPath: String
     backdropPath: String
+}
+
+
+extend type Query {
+    getMovieLatest: GetMovieLatestResponse
 }

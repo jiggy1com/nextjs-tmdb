@@ -1,9 +1,9 @@
-# if query needs arguments, then :
-# query MovieDetails($id: ID!) {
-#    movie(id: $id) {
-
-# In "query GetMovieLatest" the "GetMovieLatest" is technically optional,
-# and is mostly for debugging, tooling, and caching
+## if query needs arguments, then :
+## query MovieDetails($id: ID!) {
+##    movie(id: $id) {
+#
+## In "query GetMovieLatest" the "GetMovieLatest" is technically optional,
+## and is mostly for debugging, tooling, and caching
 query GetMovieLatest {
     getMovieLatest {
         adult

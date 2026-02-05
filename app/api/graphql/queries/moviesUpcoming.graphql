@@ -2,19 +2,19 @@ query GetUpcoming($page: Int) {
     getUpcoming(page: $page) {
         results {
             adult
-            backdropPath
+            backdrop_path
             genreIds
             id
-            originalLanguage
-            originalTitle
+            original_language
+            original_title
             overview
             popularity
-            posterPath
-            releaseDate
+            poster_path
+            release_date
             title
             video
-            voteAverage
-            voteCount
+            vote_average
+            vote_count
         }
         total_pages
         total_results

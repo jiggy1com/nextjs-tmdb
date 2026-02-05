@@ -61,5 +61,10 @@ const resolverHelper = async <T>(
         throw new Error(`Failed to fetch data from ${endpoint}`);
     }
 
-    return (await res.json()) as T;
+    const resp = (await res.json()) as T;
+
+    console.log('#debug api response');
+    console.log(resp);
+
+    return resp;
 };

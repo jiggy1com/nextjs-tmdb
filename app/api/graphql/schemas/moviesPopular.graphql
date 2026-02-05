@@ -7,21 +7,21 @@ type GetPopularResponse {
 
 type GetPopular {
     adult: Boolean
-    backdropPath: String
+    backdrop_path: String
     genreIds: [Int]
     id: Int
-    originalLanguage: String
-    originalTitle: String
+    original_language: String
+    original_title: String
     overview: String
     popularity: Float
-    posterPath: String
-    releaseDate: String
+    poster_path: String
+    release_date: String
     title: String
     video: Boolean
-    voteAverage: Float
-    voteCount: Int
+    vote_average: Float
+    vote_count: Int
 }
 
 extend type Query {
-    getPopular: GetPopularResponse
+    getPopular(page: Int): GetPopularResponse
 }
