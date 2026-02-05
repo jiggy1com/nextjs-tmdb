@@ -1,5 +1,5 @@
 import { doGet } from '../resolverUtils/resolverHelper';
-import { GetUpcomingResponse } from '@/app/api/graphql/generated/graphql';
+import { GetUpcomingResponse, GetMovieDetailsResponse } from '@/app/api/graphql/generated/graphql';
 
 // parent, args, context, info
 
@@ -9,6 +9,10 @@ type getUpcomingArgs = {
     page?: number;
 };
 
+type getMovieDetailsArgs = {
+    id: number;
+};
+
 export const movie = {
     Query: {
         // this endpoint returns a single latest movie object
@@ -16,6 +20,8 @@ export const movie = {
         getMovieLatest: async () => {
             return await doGet('movie/latest');
         },
+
+        // app endpoints
         getNowPlaying: async () => {
             return await doGet('movie/now_playing');
         },
@@ -26,8 +32,14 @@ export const movie = {
             return await doGet('movie/top_rated');
         },
         getUpcoming: async (_: unknown, args: getUpcomingArgs): Promise<GetUpcomingResponse> => {
-            console.log('getUpcoming args:', args);
             return await doGet<GetUpcomingResponse>('movie/upcoming', args);
+        },
+        getMovieDetails: async (
+            _: unknown,
+            args: getMovieDetailsArgs,
+        ): Promise<GetMovieDetailsResponse> => {
+            console.log('getMovieDetails args:', args);
+            return await doGet<GetMovieDetailsResponse>(`movie/${args.id}`);
         },
     },
 };

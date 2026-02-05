@@ -6,6 +6,7 @@ import { fontRockSalt } from '@/app/utils/fonts';
 import Link from 'next/link';
 
 export type ToggleFunctionType = () => void;
+
 export function Nav() {
     const [state, setState] = useState({
         menuOpen: false,
@@ -18,21 +19,34 @@ export function Nav() {
             name: 'Movies',
             href: '/movie',
             children: [
-                { name: 'Latest', href: '/movie/latest' },
-                { name: 'Now Playing', href: '/movie/now-playing' },
+                { name: 'Latest (dev only)', href: '/movie/latest' },
                 { name: 'Popular', href: '/movie/popular' },
-                { name: 'Top Rated', href: '/movie/top-rated' },
+                { name: 'Now Playing', href: '/movie/now-playing' },
                 { name: 'Upcoming', href: '/movie/upcoming' },
+                { name: 'Top Rated', href: '/movie/top-rated' },
             ],
         },
         {
             name: 'TV',
             href: '/tv',
             children: [
+                { name: 'Popular', href: '/tv/popular' },
                 { name: 'Airing Today', href: '/tv/airing-today' },
                 { name: 'On The Air', href: '/tv/on-the-air' },
-                { name: 'Popular', href: '/tv/popular' },
                 { name: 'Top Rated', href: '/tv/top-rated' },
+            ],
+        },
+        {
+            name: 'People',
+            href: '/people',
+            children: [{ name: 'Popular', href: '/people/popular' }],
+        },
+        {
+            name: 'Awards',
+            href: '/awards',
+            children: [
+                { name: 'Popular', href: '/awards/popular' },
+                { name: 'Upcoming', href: '/awards/upcoming' },
             ],
         },
         { name: 'About', href: '/about' },

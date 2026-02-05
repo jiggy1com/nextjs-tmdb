@@ -10,7 +10,7 @@ type Query {
     greeting: [GreetingType]
     movie: Movie
     GreetingQuery: [GreetingObj]
-    getMovieLatest: Movie
+    #    getMovieLatest: Movie
     #    getNowPlaying: GetNowPlayingResponse
 }
 

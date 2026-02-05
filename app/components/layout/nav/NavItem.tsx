@@ -32,7 +32,8 @@ export function NavItem({
         setState({ isHovered: false });
     };
 
-    const handleClick = () => {
+    const handleClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+        e.target.dispatchEvent(new MouseEvent('mouseout', { bubbles: true }));
         toggleMenuAction();
     };
 
