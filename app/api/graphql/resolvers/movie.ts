@@ -9,6 +9,10 @@ type getUpcomingArgs = {
     page?: number;
 };
 
+type getPopularArgs = {
+    page?: number;
+};
+
 type getMovieDetailsArgs = {
     id: number;
 };
@@ -25,8 +29,8 @@ export const movie = {
         getNowPlaying: async () => {
             return await doGet('movie/now_playing');
         },
-        getPopular: async () => {
-            return await doGet('movie/popular');
+        getPopular: async (_: unknown, args: getPopularArgs) => {
+            return await doGet(`movie/popular?page=${args.page}`);
         },
         getTopRated: async () => {
             return await doGet('movie/top_rated');
