@@ -46,4 +46,10 @@ export const movie = {
             return await doGet<GetMovieDetailsResponse>(`movie/${args.id}`);
         },
     },
+    GetMovieDetailsResponse: {
+        getMovieCredits: async (parent: getMovieDetailsArgs) => {
+            console.log('getMovieCredits parent:', parent);
+            return await doGet(`movie/${parent.id}/credits`);
+        },
+    },
 };

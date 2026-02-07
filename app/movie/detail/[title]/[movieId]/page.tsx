@@ -8,6 +8,7 @@ import {
 import { getClient } from '@/app/ApolloClient';
 import { ApolloClient } from '@apollo/client';
 import QueryResult = ApolloClient.QueryResult;
+import { Heading } from '@components/text/Heading';
 
 export default async function MovieDetailPage({
     params,
@@ -72,9 +73,45 @@ export default async function MovieDetailPage({
 
     return (
         <>
+            <div
+                style={{
+                    maxHeight: '600px',
+                    display: 'flex',
+                    overflow: 'hidden',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    position: 'relative',
+                }}>
+                {/*background image*/}
+                <img
+                    style={{
+                        objectFit: 'contain',
+                        objectPosition: 'center',
+                        width: '100%',
+                        height: 'auto',
+                        opacity: '.5',
+                        position: 'absolute',
+                        zIndex: 1,
+                    }}
+                    width={'100%'}
+                    src={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${getMovieDetails.backdrop_path}`}
+                />
+
+                <div>
+                    <Heading>{getMovieDetails.title}</Heading>
+                </div>
+            </div>
+
+            {/*background image*/}
+            {/*<img*/}
+            {/*    width={'100%'}*/}
+            {/*    src={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${getMovieDetails.backdrop_path}`}*/}
+            {/*/>*/}
+
+            {/*side image*/}
             <img
                 width={'100%'}
-                src={`https://image.tmdb.org/t/p/w600_and_h900_face/${getMovieDetails.backdrop_path}`}
+                src={`https://image.tmdb.org/t/p/w600_and_h900_face/${getMovieDetails.poster_path}`}
             />
             <h1>{getMovieDetails.title}</h1>
 

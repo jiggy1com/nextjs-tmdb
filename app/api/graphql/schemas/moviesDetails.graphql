@@ -24,6 +24,7 @@ type Movie {
     video: Boolean!           # Defaults to true
     vote_average: Float!      # Defaults to 0
     vote_count: Int!          # Defaults to 0
+    getMovieCredits: MovieCreditsResponse
 }
 
 type Genre {
@@ -76,6 +77,8 @@ type GetMovieDetailsResponse {
     video: Boolean!           # Defaults to true
     vote_average: Float!      # Defaults to 0
     vote_count: Int!          # Defaults to 0
+    getMovieCredits: MovieCreditsResponse
+
 }
 
 #type getMovieDetailsArgs {
@@ -84,4 +87,5 @@ type GetMovieDetailsResponse {
 
 extend type Query {
     getMovieDetails(id: Int): GetMovieDetailsResponse!
+
 }
