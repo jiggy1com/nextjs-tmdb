@@ -1,13 +1,12 @@
-import { useQuery } from '@apollo/client/react';
-import {
-    GetMovieDetailsDocument,
-    GetMovieDetailsQuery,
-    GetPopularDocument,
-    GetTopRatedDocument,
-} from '@/app/api/graphql/generated/graphql';
+import { GetMovieDetailsDocument, GetMovieDetailsQuery } from '@/app/api/graphql/generated/graphql';
 import { getClient } from '@/app/ApolloClient';
 import { ApolloClient } from '@apollo/client';
+import { Heading } from '@components/text/Heading';
+import JsonViewer from '@components/jsonViewer/JsonViewer';
 import QueryResult = ApolloClient.QueryResult;
+import { MovieDetails } from '@components/movie/details/MovieDetails';
+import { MovieDetailsProvider } from '@components/providers/server/MovieDetailsContext';
+import { useContext } from 'react';
 
 export default async function MovieDetailPage({
     params,
@@ -62,6 +61,8 @@ export default async function MovieDetailPage({
         return;
     }
 
+    // const { setMovieDetails } = await import('@components/providers/server/MovieDetailsContext');
+
     const { getMovieDetails } = data;
 
     // const {
@@ -71,17 +72,8 @@ export default async function MovieDetailPage({
     // } = result;
 
     return (
-        <>
-            <img
-                width={'100%'}
-                src={`https://image.tmdb.org/t/p/w600_and_h900_face/${getMovieDetails.backdrop_path}`}
-            />
-            <h1>{getMovieDetails.title}</h1>
-
-            <div>Movie Detail Page</div>
-            <p>Category: {title}</p>
-            <p>MovieId: {movieId}</p>
-            <pre>{JSON.stringify(result, null, 2)}</pre>
-        </>
+        <MovieDetailsProvider movie={getMovieDetails}>
+            <MovieDetails />
+        </MovieDetailsProvider>
     );
 }

@@ -1,0 +1,9 @@
+.crew {
+	margin-top: 30px;
+
+	.crewMember {
+		p:nth-child(1) {
+			font-weight: bold;
+		}
+	}
+}

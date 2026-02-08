@@ -1,0 +1,39 @@
+type MovieCreditsResponse {
+    id: Int
+    cast: [MovieCreditCast]
+    crew: [MovieCreditCrew]
+}
+
+type MovieCreditCast {
+    adult: Boolean
+    gender: Int
+    id: Int
+    known_for_department: String
+    name: String
+    original_name: String
+    popularity: Float
+    profile_path: String
+    cast_id: Int
+    character: String
+    credit_id: String
+    order: Int
+}
+
+type MovieCreditCrew {
+    adult: Boolean
+    gender: Int
+    id: Int
+    known_for_department: String
+    name: String
+    original_name: String
+    popularity: Float
+    profile_path: String
+    credit_id: Int
+    department: String
+    job: String
+}
+
+extend type Query {
+    getMovieCredits(id: Int): MovieCreditsResponse!
+
+}

@@ -1,15 +1,14 @@
-@use '@/app/mixins' as *;
+@use "@/app/mixins" as *;
 
 .container {
 	width: 100%;
-
 	padding: 0 20px;
-	@include mediaMin('tablet') {
+
+	@include mediaMin("tablet") {
 		padding: 0 40px;
 	}
-	@include mediaMin('desktop') {
+
+	@include mediaMin("desktop") {
 		padding: 0 80px;
-		//max-width: 1400px;
-		//margin: 0 auto;
 	}
 }

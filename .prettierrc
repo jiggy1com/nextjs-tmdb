@@ -4,17 +4,30 @@
   "bracketSameLine": true,
   "bracketSpacing": true,
   "endOfLine": "lf",
-  "printWidth": 100,
+  "printWidth": 80,
   "quoteProps": "as-needed",
   "singleQuote": true,
   "tabWidth": 4,
+  "useTabs": true,
   "trailingComma": "all",
   "overrides": [
     {
-      "files": ["*.jsonc"],
+      "files": [
+        "*.jsonc"
+      ],
       "options": {
-        "trailingComma": "none",
-      },
+        "trailingComma": "none"
+      }
     },
-  ],
+    {
+      "files": ["*.scss", "*.module.scss"],
+      "options": {
+        "bracketSpacing": true,
+        "singleQuote": false,
+        "trailingComma": "none"
+      }
+    }
+  ]
 }
+
+

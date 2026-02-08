@@ -1,17 +1,22 @@
-@use '@/app/mixins' as *;
-@use 'tailwindcss';
+@use "@/app/mixins" as *;
+@use "tailwindcss";
 
 :root {
-	--background: #ffffff;
+	--background: #fff;
 	--foreground: #171717;
 }
 
-/*@theme inline {*/
-/*  --color-background: var(--background);*/
-/*  --color-foreground: var(--foreground);*/
-/*  --font-sans: var(--font-geist-sans);*/
-/*  --font-mono: var(--font-geist-mono);*/
-/*}*/
+/* @theme inline { */
+
+/*  --color-background: var(--background); */
+
+/*  --color-foreground: var(--foreground); */
+
+/*  --font-sans: var(--font-geist-sans); */
+
+/*  --font-mono: var(--font-geist-mono); */
+
+/* } */
 
 @media (prefers-color-scheme: dark) {
 	:root {
@@ -36,7 +41,6 @@ main a {
 	text-decoration: underline;
 }
 
-
 input {
 	border: solid 1px #ccc;
 	border-radius: 10px;
@@ -49,7 +53,8 @@ input {
 	}
 }
 
-button, .button {
+button,
+.button {
 	cursor: pointer;
 	padding: 10px 20px;
 	background-color: teal;
@@ -58,19 +63,20 @@ button, .button {
 
 	&.info {
 		background-color: lightseagreen;
-		//background-color: #E9B949;
+
+		// background-color: #E9B949;
 	}
 
 	&.primary {
-		//background-color: #0B2545;
-		background-color: #102A43;
+		// background-color: #0B2545;
+		background-color: #102a43;
 	}
 
-	&.disabled, &:disabled {
+	&.disabled,
+	&:disabled {
 		background-color: gray;
 		cursor: not-allowed;
 	}
-
 }
 
 code {

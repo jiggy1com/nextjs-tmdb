@@ -1,40 +1,32 @@
-@use '@/app/mixins' as *;
+@use "@/app/mixins" as *;
 
 .navItem {
-
 	position: relative;
 	order: 2; // enables the search to be first in tab order
 
-	@include mediaMax('mobileLandscape') {
+	@include mediaMax("mobileLandscape") {
 		&:last-child {
 			margin-bottom: 10px;
 		}
+
 		.navLink {
 			color: white;
 			background-color: teal;
-			padding: 20px 20px 10px 20px;
+			padding: 20px 20px 10px;
 			display: flex;
-
-
 		}
 
 		.navSubList {
-
 			.navItem {
 				.navLink {
 					padding: 10px 20px 10px 40px;
 				}
-
-
 			}
 		}
 	}
 
-
-	@include mediaMin('tablet') {
-
+	@include mediaMin("tablet") {
 		.navLink {
-
 			color: white;
 			display: inline-block;
 			padding: 20px 40px;
@@ -43,25 +35,24 @@
 			&:hover {
 				color: teal;
 			}
-
 		}
 
 		// sub menu
+
 		.navSubList {
 			display: none;
 			position: absolute;
 			background-color: teal;
 			flex-wrap: wrap;
 			gap: 0;
-
 			border: solid 1px black;
 			box-shadow: 0 0 30px black;
-
 
 			.navItem {
 				flex: 1;
 
 				// hover sub menu item
+
 				&:hover {
 					.navLink {
 						background-color: black;
@@ -81,6 +72,4 @@
 			}
 		}
 	}
-
-
 }

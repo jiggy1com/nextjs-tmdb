@@ -43,5 +43,19 @@ query GetMovieDetails($id: Int!) {
         poster_path
         backdrop_path
         video
+        getMovieCredits {
+            cast {
+                id
+                name
+                character
+                profile_path
+            }
+            crew {
+                id
+                name
+                job
+                profile_path
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@ import { ContainerFluid } from '@components/container/ContainerFluid';
 import { Container } from '@components/container/Container';
 import { useQuery } from '@apollo/client/react';
 import { GetMovieLatestDocument } from '@/app/api/graphql/generated/graphql';
+import JsonViewer from '@components/jsonViewer/JsonViewer';
 
 export default function LatestPage() {
     const { data, loading, error, refetch, networkStatus } = useQuery(GetMovieLatestDocument, {
@@ -41,7 +42,7 @@ export default function LatestPage() {
                     <code>useQuery(GetMovieLatestDocument)</code>
                 </p>
 
-                <pre>{JSON.stringify(data, null, 2)}</pre>
+                <JsonViewer data={data} />
             </Container>
         </ContainerFluid>
     );

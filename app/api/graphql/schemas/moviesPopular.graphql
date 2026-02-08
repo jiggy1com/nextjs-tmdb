@@ -1,11 +1,11 @@
-type GetPopularResponse {
-    results: [GetPopular]
+type GetMoviesPopularResponse {
+    results: [GetMoviesPopular]
     page: Int
     total_pages: Int
     total_results: Int
 }
 
-type GetPopular {
+type GetMoviesPopular {
     adult: Boolean
     backdrop_path: String
     genreIds: [Int]
@@ -23,5 +23,5 @@ type GetPopular {
 }
 
 extend type Query {
-    getPopular(page: Int): GetPopularResponse
+    getMoviesPopular(page: Int): GetMoviesPopularResponse
 }

@@ -1,5 +1,5 @@
-query GetPopular($page: Int) {
-    getPopular(page: $page) {
+query GetMoviesPopular($page: Int) {
+    getMoviesPopular(page: $page) {
         results {
             adult
             backdrop_path

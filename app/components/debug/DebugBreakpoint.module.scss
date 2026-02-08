@@ -1,0 +1,61 @@
+@use "@/app/mixins" as *;
+
+.debugBreakpoint {
+	position: fixed;
+	bottom: 70px;
+	left: 30px;
+	padding: 10px 20px;
+	background-color: teal;
+	color: white;
+	border-radius: 100px;
+	border: solid 1px white;
+	box-shadow: 0 0 30px black;
+
+	.mobile {
+		display: none;
+
+		@include media("mobile") {
+			display: block;
+		}
+	}
+
+	.mobileLandscape {
+		display: none;
+
+		@include media("mobileLandscape") {
+			display: block;
+		}
+	}
+
+	.tablet {
+		display: none;
+
+		@include media("tablet") {
+			display: block;
+		}
+	}
+
+	.tabletLandscape {
+		display: none;
+
+		@include media("tabletLandscape") {
+			display: block;
+		}
+	}
+
+	.desktop {
+		display: none;
+
+		@include media("desktop") {
+			display: block;
+		}
+	}
+
+	.desktopWide {
+		display: none;
+
+		@include media("desktopWide") {
+			display: block;
+		}
+	}
+}

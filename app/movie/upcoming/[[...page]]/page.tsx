@@ -5,6 +5,7 @@ import { Container } from '@components/container/Container';
 import Pagination from '@components/pagination/Pagination';
 import { ApolloClient } from '@apollo/client';
 import QueryResult = ApolloClient.QueryResult;
+import JsonViewer from '@components/jsonViewer/JsonViewer';
 
 export default async function MovieUpcomingPage({
     params,
@@ -55,14 +56,14 @@ export default async function MovieUpcomingPage({
 
             <div>param page: {page}</div>
             <div>total pages: {data?.result?.data?.getUpcoming?.total_pages}</div>
-            <div>SERVER side API Data:</div>
             <Pagination
                 baseUrl={baseUrl}
                 totalPages={data?.result?.data?.getUpcoming?.total_pages ?? 0}
                 totalResults={data?.result?.data?.getUpcoming?.total_results ?? 0}
                 initialPage={page ?? 0}
             />
-            <pre>{JSON.stringify(data, null, 2)}</pre>
+            <div>SERVER side API Data:</div>
+            <JsonViewer data={data?.result?.data?.getUpcoming?.results} />
         </Container>
     );
 }

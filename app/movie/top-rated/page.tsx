@@ -2,6 +2,7 @@ import { getClient } from '@/app/ApolloClient';
 import { GetTopRatedDocument } from '@/app/api/graphql/generated/graphql';
 import { Heading } from '@components/text/Heading';
 import { Container } from '@components/container/Container';
+import JsonViewer from '@components/jsonViewer/JsonViewer';
 
 export default async function MoviesTopRatedPage() {
     const result = await getClient()
@@ -29,7 +30,7 @@ export default async function MoviesTopRatedPage() {
         <Container>
             <Heading as={'h1'}>Top Rated Movies</Heading>
             SERVER side API Data:
-            <pre>{JSON.stringify(data, null, 2)}</pre>
+            <JsonViewer data={data} />
         </Container>
     );
 }
