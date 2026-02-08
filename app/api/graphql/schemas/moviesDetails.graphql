@@ -87,5 +87,4 @@ type GetMovieDetailsResponse {
 
 extend type Query {
     getMovieDetails(id: Int): GetMovieDetailsResponse!
-
 }

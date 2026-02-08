@@ -1,13 +1,15 @@
-@use '@/app/mixins' as *;
+@use "@/app/mixins" as *;
 
 h1.heading {
 	font-size: 30px;
 	margin-bottom: 20px;
-	@include mediaMin('tablet') {
+
+	@include mediaMin("tablet") {
 		font-size: 50px;
 		margin-bottom: 30px;
 	}
-	@include mediaMin('desktop') {
+
+	@include mediaMin("desktop") {
 		font-size: 80px;
 	}
 }
@@ -15,11 +17,13 @@ h1.heading {
 h2.heading {
 	font-size: 30px;
 	margin-bottom: 20px;
-	@include mediaMin('tablet') {
+
+	@include mediaMin("tablet") {
 		font-size: 45px;
 		margin-bottom: 30px;
 	}
-	@include mediaMin('desktop') {
+
+	@include mediaMin("desktop") {
 		font-size: 60px;
 	}
 }
@@ -27,11 +31,13 @@ h2.heading {
 h3.heading {
 	font-size: 20px;
 	margin-bottom: 20px;
-	@include mediaMin('tablet') {
+
+	@include mediaMin("tablet") {
 		font-size: 30px;
 		margin-bottom: 30px;
 	}
-	@include mediaMin('desktop') {
+
+	@include mediaMin("desktop") {
 		font-size: 40px;
 	}
 }

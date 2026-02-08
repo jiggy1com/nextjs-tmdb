@@ -3,17 +3,9 @@
 	display: flex;
 	justify-content: center;
 
-	button, a {
+	button,
+	a {
 		display: flex;
 		text-decoration: none;
-
-		&.info {
-
-		}
-
-		&.primary {
-
-		}
 	}
-
 }

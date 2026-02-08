@@ -1,12 +1,14 @@
-@use '@/app/mixins' as *;
+@use "@/app/mixins" as *;
 
 .footer {
 	text-align: center;
 	padding: 100px 20px;
-	@include media('tablet') {
+
+	@include media("tablet") {
 		padding: 100px 40px;
 	}
-	@include media('desktop') {
+
+	@include media("desktop") {
 		padding: 100px 80px;
 	}
 

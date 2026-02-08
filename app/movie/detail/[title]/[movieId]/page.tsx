@@ -1,14 +1,12 @@
-import { useQuery } from '@apollo/client/react';
-import {
-    GetMovieDetailsDocument,
-    GetMovieDetailsQuery,
-    GetPopularDocument,
-    GetTopRatedDocument,
-} from '@/app/api/graphql/generated/graphql';
+import { GetMovieDetailsDocument, GetMovieDetailsQuery } from '@/app/api/graphql/generated/graphql';
 import { getClient } from '@/app/ApolloClient';
 import { ApolloClient } from '@apollo/client';
-import QueryResult = ApolloClient.QueryResult;
 import { Heading } from '@components/text/Heading';
+import JsonViewer from '@components/jsonViewer/JsonViewer';
+import QueryResult = ApolloClient.QueryResult;
+import { MovieDetails } from '@components/movie/details/MovieDetails';
+import { MovieDetailsProvider } from '@components/providers/server/MovieDetailsContext';
+import { useContext } from 'react';
 
 export default async function MovieDetailPage({
     params,
@@ -63,6 +61,8 @@ export default async function MovieDetailPage({
         return;
     }
 
+    // const { setMovieDetails } = await import('@components/providers/server/MovieDetailsContext');
+
     const { getMovieDetails } = data;
 
     // const {
@@ -72,53 +72,8 @@ export default async function MovieDetailPage({
     // } = result;
 
     return (
-        <>
-            <div
-                style={{
-                    maxHeight: '600px',
-                    display: 'flex',
-                    overflow: 'hidden',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    position: 'relative',
-                }}>
-                {/*background image*/}
-                <img
-                    style={{
-                        objectFit: 'contain',
-                        objectPosition: 'center',
-                        width: '100%',
-                        height: 'auto',
-                        opacity: '.5',
-                        position: 'absolute',
-                        zIndex: 1,
-                    }}
-                    width={'100%'}
-                    src={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${getMovieDetails.backdrop_path}`}
-                />
-
-                <div>
-                    <Heading>{getMovieDetails.title}</Heading>
-                </div>
-            </div>
-
-            {/*background image*/}
-            {/*<img*/}
-            {/*    width={'100%'}*/}
-            {/*    src={`https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${getMovieDetails.backdrop_path}`}*/}
-            {/*/>*/}
-
-            {/*side image*/}
-            <img
-                width={'100%'}
-                src={`https://image.tmdb.org/t/p/w600_and_h900_face/${getMovieDetails.poster_path}`}
-            />
-            <h1>{getMovieDetails.title}</h1>
-
-            <div>Movie Detail Page</div>
-            <p>Category: {title}</p>
-            <p>MovieId: {movieId}</p>
-            <pre>{JSON.stringify(result, null, 2)}</pre>
-        </>
+        <MovieDetailsProvider movie={getMovieDetails}>
+            <MovieDetails />
+        </MovieDetailsProvider>
     );
 }

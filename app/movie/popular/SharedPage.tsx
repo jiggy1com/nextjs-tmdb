@@ -1,17 +1,18 @@
 'use client';
 import { Container } from '@components/container/Container';
 import { Heading } from '@components/text/Heading';
-import { MovieList } from '@components/movie/MovieList';
-import { GetPopularDocument, Movie } from '@/app/api/graphql/generated/graphql';
+import { MovieList } from '@components/movie/list/MovieList';
+import { GetMoviesPopularDocument, Movie } from '@/app/api/graphql/generated/graphql';
 import Pagination from '@components/pagination/Pagination';
 import { useQuery } from '@apollo/client/react';
+import JsonViewer from '@components/jsonViewer/JsonViewer';
 
 type SharedPageProps = {
     page: number;
 };
 
 export function SharedPage({ page }: SharedPageProps) {
-    const { data } = useQuery(GetPopularDocument, {
+    const { data } = useQuery(GetMoviesPopularDocument, {
         variables: {
             page: page,
         },
@@ -28,15 +29,15 @@ export function SharedPage({ page }: SharedPageProps) {
     return (
         <Container>
             <Heading as={'h1'}>Popular Movies</Heading>
-            <MovieList movieList={(data?.getPopular?.results ?? []) as Movie[]} />
+            <MovieList movieList={(data?.getMoviesPopular?.results ?? []) as Movie[]} />
             <Pagination
                 baseUrl={'/movie/popular'}
                 initialPage={page}
-                totalPages={data?.getPopular?.total_pages ?? 1}
-                totalResults={data?.getPopular?.total_results ?? 0}
+                totalPages={data?.getMoviesPopular?.total_pages ?? 1}
+                totalResults={data?.getMoviesPopular?.total_results ?? 0}
             />
             CLIENT side API Data:
-            <pre>{JSON.stringify(data, null, 2)}</pre>
+            <JsonViewer data={data} />
         </Container>
     );
 }

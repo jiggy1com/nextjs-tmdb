@@ -1,5 +1,5 @@
 import { Movie } from '@/app/api/graphql/generated/graphql';
-import { MovieListItem } from '@components/movie/MovieListItem';
+import { MovieListItem } from '@components/movie/list/MovieListItem';
 import { Grid } from '@components/grid/Grid';
 import { GridItem } from '@components/grid/GridItem';
 import { Card } from '@components/card/Card';

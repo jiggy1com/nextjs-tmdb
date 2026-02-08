@@ -17,7 +17,9 @@
     "generate:resolvers": "node scripts/generate-resolvers.js",
     "watch:resolvers": "nodemon --watch app/api/graphql/resolvers --ext ts --exec \"npm run generate:resolvers\"",
     "generate:schemas": "node scripts/generate-schemas.js",
-    "watch:schemas": "nodemon --watch app/api/graphql/schemas --ext graphql --exec \"npm run generate:schemas\""
+    "watch:schemas": "nodemon --watch app/api/graphql/schemas --ext graphql --exec \"npm run generate:schemas\"",
+    "format:css": "prettier --write '**/*.scss' && stylelint '**/*.scss' --fix",
+    "lint:css": "stylelint '**/*.scss'"
   },
   "dependencies": {
     "@apollo/client": "^4.0.11",
@@ -36,6 +38,7 @@
     "nodemon": "^3.1.11",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-json-view": "^1.21.3",
     "sass": "^1.97.2"
   },
   "devDependencies": {
@@ -54,6 +57,13 @@
     "eslint-config-next": "16.1.1",
     "glob": "^13.0.0",
     "prettier": "3.7.4",
+    "stylelint": "^17.1.1",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-recommended-scss": "^17.0.0",
+    "stylelint-config-standard": "^40.0.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-prettier": "^5.0.3",
+    "stylelint-scss": "^7.0.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

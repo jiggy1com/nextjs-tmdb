@@ -29,7 +29,7 @@ export const movie = {
         getNowPlaying: async () => {
             return await doGet('movie/now_playing');
         },
-        getPopular: async (_: unknown, args: getPopularArgs) => {
+        getMoviesPopular: async (_: unknown, args: getPopularArgs) => {
             return await doGet(`movie/popular?page=${args.page}`);
         },
         getTopRated: async () => {

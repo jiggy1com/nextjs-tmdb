@@ -1,0 +1,13 @@
+@use "@/app/mixins" as *;
+
+.grid {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat(12, 1fr);
+	align-items: stretch;
+	grid-auto-rows: auto;
+
+	@include mediaMin("tablet") {
+		grid-auto-rows: 1fr;
+	}
+}
