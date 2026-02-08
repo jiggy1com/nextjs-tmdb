@@ -35,7 +35,7 @@ export function MovieDetails() {
 					{/*<MovieDetailsImages />*/}
 					{/*<MovieDetailsKeywords />*/}
 					{/*<MovieDetailsMedia />*/}
-					{/*<MovieDetailsRecommendations />*/}
+					<MovieDetailsRecommendations />
 					{/*<MovieDetailsReleaseDates />*/}
 					{/*<MovieDetailsReviews />*/}
 					{/*<MovieDetailsSimilar />*/}

@@ -1,0 +1,22 @@
+query GetMovieDetailsRecommendations($id: Int!) {
+    getMovieDetailsRecommendations(id: $id) {
+        results {
+            adult
+            backdrop_path
+            genreIds
+            id
+            original_language
+            original_title
+            overview
+            popularity
+            poster_path
+            release_date
+            title
+            video
+            vote_average
+            vote_count
+        }
+        total_pages
+        total_results
+    }
+}

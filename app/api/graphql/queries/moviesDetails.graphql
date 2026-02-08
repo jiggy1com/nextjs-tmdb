@@ -43,6 +43,7 @@ query GetMovieDetails($id: Int!) {
         poster_path
         backdrop_path
         video
+
         getMovieCredits {
             cast {
                 id
@@ -56,6 +57,28 @@ query GetMovieDetails($id: Int!) {
                 job
                 profile_path
             }
+        }
+
+        getMovieDetailsRecommendations {
+            results {
+                adult
+                backdrop_path
+                genreIds
+                id
+                original_language
+                original_title
+                overview
+                popularity
+                poster_path
+                release_date
+                title
+                video
+                vote_average
+                vote_count
+            }
+            page
+            total_pages
+            total_results
         }
     }
 }
