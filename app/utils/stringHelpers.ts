@@ -42,3 +42,7 @@ export function quickDateFormat(dateString: string): string {
 	const [year, month, day] = dateString.split('-');
 	return `${month}/${day}/${year}`;
 }
+
+export function convertNumberWithCommas(num: number): string {
+	return num.toLocaleString();
+}

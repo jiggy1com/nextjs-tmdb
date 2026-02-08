@@ -1,5 +1,6 @@
 import {
 	convertMinutesToHoursAndMinutes,
+	convertNumberWithCommas,
 	dollarFormat,
 	quickDateFormat,
 } from '@/app/utils/stringHelpers';
@@ -79,6 +80,33 @@ export function MovieDetailsSidebar() {
 						<span className={styles.heading}>Run Time</span>
 						<span className={styles.headingValue}>
 							{convertMinutesToHoursAndMinutes(movie.runtime)}
+						</span>
+					</>
+				)}
+
+				{movie.popularity && (
+					<>
+						<span className={styles.heading}>Popularity</span>
+						<span className={styles.headingValue}>
+							{movie.popularity} (useless metric)
+						</span>
+					</>
+				)}
+
+				{movie.vote_average > 0 && (
+					<>
+						<span className={styles.heading}>Vote Average</span>
+						<span className={styles.headingValue}>
+							{movie.vote_average} / 10
+						</span>
+					</>
+				)}
+
+				{movie.vote_count > 0 && (
+					<>
+						<span className={styles.heading}>Vote Count</span>
+						<span className={styles.headingValue}>
+							{convertNumberWithCommas(movie.vote_count)}
 						</span>
 					</>
 				)}

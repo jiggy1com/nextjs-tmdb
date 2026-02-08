@@ -17,10 +17,10 @@ export function MovieDetailsCast() {
 			<Container>
 				<Heading as={'h3'}>Cast</Heading>
 				<ResponsiveGrid className={styles.cast}>
-					{cast.map((member) =>
+					{cast.map((member, idx) =>
 						member ? (
 							<ResponsiveGridItem
-								key={member.id}
+								key={member.id + '-' + idx}
 								mobile={6}
 								tabletLandscape={4}
 								desktop={3}

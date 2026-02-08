@@ -17,10 +17,10 @@ export function MovieDetailsCrew() {
 			<Container>
 				<Heading as={'h3'}>Crew</Heading>
 				<ResponsiveGrid className={styles.cast}>
-					{crew.map((member) =>
+					{crew.map((member, idx) =>
 						member ? (
 							<ResponsiveGridItem
-								key={member.id}
+								key={member.id + '-' + idx}
 								mobile={6}
 								tabletLandscape={4}
 								desktop={3}
