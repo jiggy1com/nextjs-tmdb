@@ -78,7 +78,7 @@ type GetMovieDetailsResponse {
     vote_average: Float!      # Defaults to 0
     vote_count: Int!          # Defaults to 0
     getMovieCredits: MovieCreditsResponse
-
+getMovieDetailsRecommendations: GetMovieDetailsRecommendationsResponse
 }
 
 #type getMovieDetailsArgs {

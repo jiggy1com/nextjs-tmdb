@@ -9,7 +9,7 @@ export const voteAverageToPercentage = (voteAverage: number) => {
 type ImagePathSize = '500' | 'original' | '300' | '400' | '185';
 type ImagePath = string | null;
 
-export const imagePath = (path: ImagePath, size: ImagePathSize) => {
+export const imagePath = (path: ImagePath, size: ImagePathSize = '300') => {
 	if (!path) {
 		return `https://thumbs.dreamstime.com/z/playful-missing-image-cartoon-icon-sad-photo-frame-character-bold-outlines-white-background-ui-perspective-funny-design-403989886.jpg?ct=jpeg`;
 		return 'https://media1.tenor.com/m/UE8tpiyGN9IAAAAd/its-just-not-available-dj-slope.gif';

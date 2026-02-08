@@ -35,5 +35,4 @@ type MovieCreditCrew {
 
 extend type Query {
     getMovieCredits(id: Int): MovieCreditsResponse!
-
 }
