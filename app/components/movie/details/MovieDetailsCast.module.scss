@@ -11,6 +11,10 @@
 		padding: 10px;
 
 		span {
+			display: block;
+		}
+
+		span:first-child {
 			font-weight: bold;
 		}
 	}

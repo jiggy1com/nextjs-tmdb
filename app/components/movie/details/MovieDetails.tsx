@@ -31,6 +31,7 @@ export function MovieDetails() {
 					<MovieDetailsCast />
 
 					<MovieDetailsCrew />
+
 					{/*<MovieDetailsImages />*/}
 					{/*<MovieDetailsKeywords />*/}
 					{/*<MovieDetailsMedia />*/}
@@ -41,7 +42,7 @@ export function MovieDetails() {
 					{/*<MovieDetailsTranslations />*/}
 					{/*<MovieDetailsWatchProviders />*/}
 				</ResponsiveGridItem>
-				<ResponsiveGridItem mobile={12} tablet={8} desktop={3}>
+				<ResponsiveGridItem mobile={12} tablet={5} desktop={3}>
 					<MovieDetailsSidebar />
 				</ResponsiveGridItem>
 			</ResponsiveGrid>

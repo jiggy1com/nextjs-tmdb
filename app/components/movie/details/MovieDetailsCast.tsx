@@ -2,7 +2,7 @@ import { useMovieDetails } from '@components/providers/server/MovieDetailsContex
 import { Container } from '@components/container/Container';
 import { ResponsiveGrid } from '@components/grid/ResponsiveGrid';
 import { ResponsiveGridItem } from '@components/grid/ResponsiveGridItem';
-import { imagePath } from '@/app/utils/stringHelpers';
+import { imageFacePath, imagePath } from '@/app/utils/stringHelpers';
 import { Card } from '@components/card/Card';
 import { Heading } from '@components/text/Heading';
 import styles from './MovieDetailsCast.module.scss';
@@ -10,7 +10,7 @@ import { ContainerFluid } from '@components/container/ContainerFluid';
 import { Section } from '@components/container/Section';
 export function MovieDetailsCast() {
 	const { movie } = useMovieDetails();
-	const cast = movie?.getMovieCredits?.cast?.splice(0, 6) || [];
+	const cast = movie?.getMovieCredits?.cast?.splice(0, 12) || [];
 
 	return (
 		<Section>
@@ -22,21 +22,19 @@ export function MovieDetailsCast() {
 							<ResponsiveGridItem
 								key={member.id}
 								mobile={6}
-								tablet={3}
-								desktop={2}>
+								tabletLandscape={4}
+								desktop={3}
+								desktopWide={2}>
 								<Card>
-									{member.profile_path && (
-										<img
-											src={imagePath(
-												member.profile_path,
-												'185',
-											)}
-											alt={member?.name ?? ''}
-										/>
-									)}
+									<img
+										src={imageFacePath(
+											member?.profile_path ?? '',
+										)}
+										alt={member?.name ?? ''}
+									/>
 									<div className={styles.copy}>
-										<span>{member.name}</span> as{' '}
-										{member.character}
+										<span>{member.name}</span>
+										<span>{member.character}</span>
 									</div>
 								</Card>
 							</ResponsiveGridItem>

@@ -1,4 +1,22 @@
 .sidebar {
 	background-color: white;
+	color: black;
 	height: 100%;
+
+	.shortInfo {
+		padding: 20px;
+
+		.heading {
+			font-weight: bold;
+		}
+
+		.headingValue {
+			margin-bottom: 20px;
+		}
+
+		.heading,
+		.headingValue {
+			display: block;
+		}
+	}
 }

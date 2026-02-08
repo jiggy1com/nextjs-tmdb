@@ -5,12 +5,12 @@ import { ResponsiveGrid } from '@components/grid/ResponsiveGrid';
 import styles from '@components/movie/details/MovieDetailsCast.module.scss';
 import { ResponsiveGridItem } from '@components/grid/ResponsiveGridItem';
 import { Card } from '@components/card/Card';
-import { imagePath } from '@/app/utils/stringHelpers';
+import { imageFacePath, imagePath } from '@/app/utils/stringHelpers';
 import { Section } from '@components/container/Section';
 
 export function MovieDetailsCrew() {
 	const { movie } = useMovieDetails();
-	const crew = movie?.getMovieCredits?.crew?.splice(0, 6) || [];
+	const crew = movie?.getMovieCredits?.crew?.splice(0, 12) || [];
 
 	return (
 		<Section>
@@ -22,22 +22,19 @@ export function MovieDetailsCrew() {
 							<ResponsiveGridItem
 								key={member.id}
 								mobile={6}
-								tablet={3}
-								desktop={2}>
+								tabletLandscape={4}
+								desktop={3}
+								desktopWide={2}>
 								<Card>
-									{member.profile_path && (
-										<img
-											src={imagePath(
-												member.profile_path,
-												'185',
-											)}
-											alt={member?.name ?? ''}
-										/>
-									)}
+									<img
+										src={imageFacePath(
+											member.profile_path ?? '',
+										)}
+										alt={member?.name ?? ''}
+									/>
 									<div className={styles.copy}>
-										{member.id}
-										<span>{member.name}</span> as{' '}
-										{member.job}
+										<span>{member.name}</span>
+										<span>{member.job}</span>
 									</div>
 								</Card>
 							</ResponsiveGridItem>
