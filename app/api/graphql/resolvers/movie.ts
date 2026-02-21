@@ -2,6 +2,7 @@ import { doGet } from '../resolverUtils/resolverHelper';
 import {
 	GetUpcomingResponse,
 	GetMovieDetailsResponse,
+	GetMoviesResponse,
 } from '@/app/api/graphql/generated/graphql';
 
 // parent, args, context, info
@@ -18,6 +19,11 @@ type getPopularArgs = {
 
 type getMovieDetailsArgs = {
 	id: number;
+};
+
+type getMoviesArgs = {
+	type: string;
+	page?: number;
 };
 
 export const movie = {
@@ -44,6 +50,16 @@ export const movie = {
 		): Promise<GetUpcomingResponse> => {
 			return await doGet<GetUpcomingResponse>('movie/upcoming', args);
 		},
+
+		getMovies: async (
+			_: unknown,
+			args: getMoviesArgs,
+		): Promise<GetMoviesResponse> => {
+			return await doGet<GetMoviesResponse>(`movie/${args.type}`, {
+				page: args.page,
+			});
+		},
+
 		getMovieDetails: async (
 			_: unknown,
 			args: getMovieDetailsArgs,
