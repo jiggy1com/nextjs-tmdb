@@ -1,17 +1,28 @@
-import { SharedPage } from '@/app/movie/popular/SharedPage';
+import { SharedPage } from '@components/movie/page/SharedPage';
+import { GetMoviesPopularDocument } from '@/app/api/graphql/generated/graphql';
+import { Heading } from '@components/text/Heading';
+import { Container } from '@components/container/Container';
 
 export default async function MoviePopularPaginationPage({
-    params,
+	params,
 }: {
-    params: Promise<{ page?: string[] }>;
+	params: Promise<{ page?: string[] }>;
 }) {
-    // unwrap the params Promise
-    const resolvedParams = await params;
+	// unwrap the params Promise
+	const resolvedParams = await params;
 
-    // grab the first segment or default
-    const page = parseInt(resolvedParams.page?.[0] ?? '1');
+	// grab the first segment or default
+	const page = parseInt(resolvedParams.page?.[0] ?? '1');
 
-    console.log('resolvedParams:', resolvedParams);
-    console.log('page:', page);
-    return <SharedPage page={page} />;
+	return (
+		<Container>
+			<Heading as={'h1'}>Popular Movies</Heading>
+			<SharedPage
+				page={page}
+				type={'popular'}
+				baseUrl={'/movie/popular'}
+				query={GetMoviesPopularDocument}
+			/>
+		</Container>
+	);
 }
