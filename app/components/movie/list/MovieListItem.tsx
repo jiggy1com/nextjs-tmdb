@@ -1,4 +1,4 @@
-import { Movie } from '@/app/api/graphql/generated/graphql';
+import { MovieObject } from '@/app/api/graphql/generated/graphql';
 import { Card } from '@components/card/Card';
 import Link from 'next/link';
 import { GridItem } from '@components/grid/GridItem';
@@ -8,10 +8,9 @@ import {
 } from '@/app/utils/stringHelpers';
 import styles from './MovieListItem.module.scss';
 import { fontZalandoSans } from '@/app/utils/fonts';
-import { Heading } from '@components/text/Heading';
 
 type MovieListItemProps = {
-	movie: Movie;
+	movie: MovieObject;
 };
 
 export function MovieListItem({ movie }: MovieListItemProps) {
@@ -40,7 +39,9 @@ export function MovieListItem({ movie }: MovieListItemProps) {
 							</p>
 							<p className={styles.rating}>
 								Rating:{' '}
-								{voteAverageToPercentage(movie.vote_average)}
+								{voteAverageToPercentage(
+									movie?.vote_average ?? 0,
+								)}
 							</p>
 						</div>
 					</Link>

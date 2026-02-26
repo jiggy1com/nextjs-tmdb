@@ -1,69 +1,73 @@
 import { getClient } from '@/app/ApolloClient';
-import { GetUpcomingDocument, GetUpcomingQuery } from '@/app/api/graphql/generated/graphql';
+import {
+	GetUpcomingDocument,
+	GetUpcomingQuery,
+	Movie,
+	MovieObject,
+} from '@/app/api/graphql/generated/graphql';
 import { Heading } from '@components/text/Heading';
 import { Container } from '@components/container/Container';
 import Pagination from '@components/pagination/Pagination';
 import { ApolloClient } from '@apollo/client';
-import QueryResult = ApolloClient.QueryResult;
 import JsonViewer from '@components/jsonViewer/JsonViewer';
+import { MovieList } from '@components/movie/list/MovieList';
+import QueryResult = ApolloClient.QueryResult;
 
 export default async function MovieUpcomingPage({
-    params,
+	params,
 }: {
-    params: Promise<{ page?: string[] }>;
+	params: Promise<{ page?: string[] }>;
 }) {
-    // unwrap the params Promise
-    const resolvedParams = await params;
+	// unwrap the params Promise
+	const resolvedParams = await params;
 
-    // grab the first segment or default
-    const page = parseInt(resolvedParams.page?.[0] ?? '1');
+	// grab the first segment or default
+	const page = parseInt(resolvedParams.page?.[0] ?? '1');
 
-    console.log('resolvedParams:', resolvedParams);
-    console.log('page:', page);
+	const apiResponse = await getClient()
+		.query({
+			query: GetUpcomingDocument,
+			variables: {
+				page: page,
+				type: 'upcoming',
+			},
+			// fetchPolicy: 'no-cache',
+		})
+		.catch((err) => {
+			console.log('MoviesUpcomingPage:err', err);
+			return {
+				data: {
+					getMovies: {
+						results: [] as Movie[],
+						total_pages: 0,
+						total_results: 0,
+					},
+				},
+				loading: false,
+				networkStatus: 7,
+				error: undefined,
+			} as QueryResult<GetUpcomingQuery>;
+		});
 
-    const result = await getClient()
-        .query({
-            query: GetUpcomingDocument,
-            variables: {
-                page: page,
-            },
-            fetchPolicy: 'no-cache',
-        })
-        .catch((err) => {
-            console.log('MoviesUpcomingPage:err', err);
-            return {
-                data: {
-                    getUpcoming: {
-                        results: [],
-                        total_pages: 0,
-                        total_results: 0,
-                    },
-                },
-                loading: false,
-                networkStatus: 7,
-                error: undefined,
-            } as QueryResult<GetUpcomingQuery>;
-        });
-    const data = { result };
+	const { results, total_pages, total_results } = apiResponse?.data
+		?.getMovies ?? {
+		results: [],
+		total_pages: 0,
+		total_results: 0,
+	};
 
-    console.log('data', data);
-
-    const baseUrl = '/movie/upcoming';
-
-    return (
-        <Container>
-            <Heading as={'h1'}>Upcoming Movies</Heading>
-
-            <div>param page: {page}</div>
-            <div>total pages: {data?.result?.data?.getUpcoming?.total_pages}</div>
-            <Pagination
-                baseUrl={baseUrl}
-                totalPages={data?.result?.data?.getUpcoming?.total_pages ?? 0}
-                totalResults={data?.result?.data?.getUpcoming?.total_results ?? 0}
-                initialPage={page ?? 0}
-            />
-            <div>SERVER side API Data:</div>
-            <JsonViewer data={data?.result?.data?.getUpcoming?.results} />
-        </Container>
-    );
+	return (
+		<Container>
+			<Heading as={'h1'}>Upcoming Movies - Server Side</Heading>
+			<MovieList movieList={(results ?? []) as MovieObject[]} />
+			<Pagination
+				baseUrl={'/movie/upcoming'}
+				totalPages={total_pages ?? 0}
+				totalResults={total_results ?? 0}
+				initialPage={page ?? 0}
+			/>
+			<div>SERVER side API Data:</div>
+			<JsonViewer data={apiResponse} />
+		</Container>
+	);
 }
