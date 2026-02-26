@@ -1,5 +1,5 @@
-query GetUpcoming($page: Int) {
-    getUpcoming(page: $page) {
+query GetUpcoming($page: Int, $type: String) {
+    getMovies(page: $page, type: $type) {
         results {
             adult
             backdrop_path

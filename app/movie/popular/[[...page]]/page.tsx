@@ -16,7 +16,7 @@ export default async function MoviePopularPaginationPage({
 
 	return (
 		<Container>
-			<Heading as={'h1'}>Popular Movies</Heading>
+			<Heading as={'h1'}>Popular Movies - Client Side</Heading>
 			<SharedPage
 				page={page}
 				type={'popular'}

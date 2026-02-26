@@ -1,19 +1,15 @@
 import { getClient } from '@/app/ApolloClient';
 import {
-	GetUpcomingDocument,
-	GetUpcomingQuery,
-	Movie,
+	GetTopRatedDocument,
 	MovieObject,
 } from '@/app/api/graphql/generated/graphql';
 import { Heading } from '@components/text/Heading';
 import { Container } from '@components/container/Container';
-import Pagination from '@components/pagination/Pagination';
-import { ApolloClient } from '@apollo/client';
 import JsonViewer from '@components/jsonViewer/JsonViewer';
 import { MovieList } from '@components/movie/list/MovieList';
-import QueryResult = ApolloClient.QueryResult;
+import Pagination from '@components/pagination/Pagination';
 
-export default async function MovieUpcomingPage({
+export default async function MoviesTopRatedPage({
 	params,
 }: {
 	params: Promise<{ page?: string[] }>;
@@ -23,30 +19,26 @@ export default async function MovieUpcomingPage({
 
 	// grab the first segment or default
 	const page = parseInt(resolvedParams.page?.[0] ?? '1');
-
 	const apiResponse = await getClient()
 		.query({
-			query: GetUpcomingDocument,
+			query: GetTopRatedDocument,
 			variables: {
-				page: page,
-				type: 'upcoming',
+				page,
+				type: 'top_rated',
 			},
 			// fetchPolicy: 'no-cache',
 		})
 		.catch((err) => {
-			console.log('MoviesUpcomingPage:err', err);
+			console.log('MoviesTopRatedPage:err', err);
 			return {
 				data: {
 					getMovies: {
-						results: [] as Movie[],
+						results: [],
 						total_pages: 0,
 						total_results: 0,
 					},
 				},
-				loading: false,
-				networkStatus: 7,
-				error: undefined,
-			} as QueryResult<GetUpcomingQuery>;
+			};
 		});
 
 	const { results, total_pages, total_results } = apiResponse?.data
@@ -58,15 +50,15 @@ export default async function MovieUpcomingPage({
 
 	return (
 		<Container>
-			<Heading as={'h1'}>Upcoming Movies - Server Side</Heading>
+			<Heading as={'h1'}>Top Rated Movies - Server Side</Heading>
 			<MovieList movieList={(results ?? []) as MovieObject[]} />
 			<Pagination
-				baseUrl={'/movie/upcoming'}
+				baseUrl={'/movie/top-rated'}
 				totalPages={total_pages ?? 0}
 				totalResults={total_results ?? 0}
 				initialPage={page ?? 0}
 			/>
-			<div>SERVER side API Data:</div>
+			SERVER side API Data:
 			<JsonViewer data={apiResponse} />
 		</Container>
 	);

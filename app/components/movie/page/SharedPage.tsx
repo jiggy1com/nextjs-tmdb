@@ -3,7 +3,7 @@ import { MovieList } from '@components/movie/list/MovieList';
 import {
 	GetMoviesPopularDocument,
 	GetNowPlayingDocument,
-	Movie,
+	MovieObject,
 } from '@/app/api/graphql/generated/graphql';
 import Pagination from '@components/pagination/Pagination';
 import { useQuery } from '@apollo/client/react';
@@ -16,7 +16,7 @@ type SharedPagePropsQuery =
 type SharedPageProps = {
 	page: number;
 	query: SharedPagePropsQuery;
-	type: 'popular' | 'now_playing';
+	type: 'popular' | 'now_playing' | 'upcoming';
 	baseUrl: string;
 };
 
@@ -48,7 +48,7 @@ export function SharedPage({ page, query, type, baseUrl }: SharedPageProps) {
 	return (
 		<>
 			<MovieList
-				movieList={(data?.getMovies?.results ?? []) as Movie[]}
+				movieList={(data?.getMovies?.results ?? []) as MovieObject[]}
 			/>
 			<Pagination
 				baseUrl={baseUrl}

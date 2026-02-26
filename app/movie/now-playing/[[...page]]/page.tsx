@@ -16,7 +16,7 @@ export default async function MovieNowPlayingPage({
 
 	return (
 		<Container>
-			<Heading as={'h1'}>Now Playing Movies</Heading>
+			<Heading as={'h1'}>Now Playing Movies - Client Side</Heading>
 			<SharedPage
 				page={page}
 				type={'now_playing'}
