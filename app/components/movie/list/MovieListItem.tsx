@@ -16,7 +16,7 @@ type MovieListItemProps = {
 export function MovieListItem({ movie }: MovieListItemProps) {
 	return (
 		<GridItem key={movie.id}>
-			<Card>
+			<Card fullHeight={true}>
 				<div className={styles.movieListItem}>
 					<Link
 						href={`/movie/detail/${seoFriendlyUrl(movie.title ?? '')}/${movie.id}`}>

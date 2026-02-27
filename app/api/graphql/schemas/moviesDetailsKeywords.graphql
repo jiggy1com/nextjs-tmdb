@@ -1,0 +1,12 @@
+type GetMovieDetailsKeywordsResponse {
+    keywords: [GetMovieDetailsKeyword]
+}
+
+type GetMovieDetailsKeyword {
+    id: Int
+    name: String
+}
+
+extend type Query {
+    getMovieDetailsKeywords(id: Int!): GetMovieDetailsKeywordsResponse
+}

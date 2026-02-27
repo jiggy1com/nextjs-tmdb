@@ -80,5 +80,11 @@ query GetMovieDetails($id: Int!) {
             total_pages
             total_results
         }
+        getMovieDetailsKeywords {
+            keywords {
+                id
+                name
+            }
+        }
     }
 }

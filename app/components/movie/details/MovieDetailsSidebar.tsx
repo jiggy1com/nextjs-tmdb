@@ -2,13 +2,17 @@ import {
 	convertMinutesToHoursAndMinutes,
 	convertNumberWithCommas,
 	dollarFormat,
+	dollarFormatShort,
+	parseDomainFromUrl,
 	quickDateFormat,
+	seoFriendlyUrl,
 } from '@/app/utils/stringHelpers';
 import { useMovieDetails } from '@components/providers/server/MovieDetailsContext';
 import styles from './MovieDetailsSidebar.module.scss';
 import { Container } from '@components/container/Container';
 import Link from 'next/link';
 import { MovieDetailsExternalIds } from '@components/movie/details/MovieDetailsExternalIds';
+import { MovieDetailsKeywords } from '@components/movie/details/MovieDetailsKeywords';
 export function MovieDetailsSidebar() {
 	const { movie } = useMovieDetails();
 
@@ -21,8 +25,15 @@ export function MovieDetailsSidebar() {
 					<>
 						<span className={styles.heading}>Home Page</span>
 						<span className={styles.headingValue}>
-							<Link href={movie.homepage} target={'_blank'}>
-								{movie.homepage}
+							<Link
+								href={movie.homepage}
+								target={'_blank'}
+								className={'button'}
+								style={{
+									display: 'block',
+									textDecoration: 'none',
+								}}>
+								Visit {parseDomainFromUrl(movie.homepage)}
 							</Link>
 						</span>
 					</>
@@ -61,7 +72,8 @@ export function MovieDetailsSidebar() {
 					<>
 						<span className={styles.heading}>Budget</span>
 						<span className={styles.headingValue}>
-							{dollarFormat(movie.budget)}
+							{/*{dollarFormat(movie.budget)}*/}$
+							{dollarFormatShort(movie.budget)}
 						</span>
 					</>
 				)}
@@ -70,7 +82,8 @@ export function MovieDetailsSidebar() {
 					<>
 						<span className={styles.heading}>Revenue</span>
 						<span className={styles.headingValue}>
-							{dollarFormat(movie.revenue)}
+							{/*{dollarFormat(movie.revenue)}*/}$
+							{dollarFormatShort(movie.revenue)}
 						</span>
 					</>
 				)}
@@ -111,6 +124,10 @@ export function MovieDetailsSidebar() {
 					</>
 				)}
 			</div>
+
+			<MovieDetailsKeywords />
+
+			<div></div>
 		</div>
 	);
 }

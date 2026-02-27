@@ -1,5 +1,32 @@
 .card {
 	background-color: white;
 	border-radius: 10px;
-	height: 100%;
+
+	&.border {
+		border: solid 1px teal;
+	}
+
+	&.fullHeight {
+		height: 100%;
+	}
+
+	&.noop {
+		padding: inherit;
+	}
+
+	&.sidebar {
+		margin: 20px;
+	}
+
+	.padding {
+		padding: 10px;
+	}
+
+	.cardHeading {
+		background-color: teal;
+		color: white;
+		border-radius: 10px 10px 0 0;
+		font-weight: bold;
+		padding: 10px 20px;
+	}
 }

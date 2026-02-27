@@ -2,6 +2,16 @@ export const seoFriendlyUrl = (url: string) => {
 	return url.replace(/\s+/g, '-').toLowerCase();
 };
 
+export const parseDomainFromUrl = (url: string) => {
+	try {
+		const { hostname } = new URL(url);
+		return hostname.replace('www.', '');
+	} catch (error) {
+		console.warn('Invalid URL provided to parseDomainFromUrl:', url, error);
+		return url;
+	}
+};
+
 export const voteAverageToPercentage = (voteAverage: number) => {
 	return Math.round((voteAverage / 10) * 100) + '%';
 };
@@ -30,6 +40,18 @@ export const dollarFormat = (amount: number) => {
 		style: 'currency',
 		currency: 'USD',
 	});
+};
+
+export const dollarFormatShort = (amount: number) => {
+	if (amount >= 1_000_000_000) {
+		return (amount / 1_000_000_000).toFixed(1) + 'B';
+	} else if (amount >= 1_000_000) {
+		return (amount / 1_000_000).toFixed(1) + 'M';
+	} else if (amount >= 1_000) {
+		return (amount / 1_000).toFixed(1) + 'K';
+	} else {
+		return amount.toString();
+	}
 };
 
 export function convertMinutesToHoursAndMinutes(minutes: number): string {

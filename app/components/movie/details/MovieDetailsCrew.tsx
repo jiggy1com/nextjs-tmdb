@@ -25,7 +25,7 @@ export function MovieDetailsCrew() {
 								tabletLandscape={4}
 								desktop={3}
 								desktopWide={2}>
-								<Card>
+								<Card fullHeight={true}>
 									<img
 										src={imageFacePath(
 											member.profile_path ?? '',
