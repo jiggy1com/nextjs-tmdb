@@ -67,18 +67,18 @@ export const movie = {
 			_: unknown,
 			args: getMovieDetailsArgs,
 		): Promise<GetMovieDetailsResponse> => {
-			console.log('getMovieDetails args:', args);
 			return await doGet<GetMovieDetailsResponse>(`movie/${args.id}`);
 		},
 	},
 	GetMovieDetailsResponse: {
 		getMovieCredits: async (parent: getMovieDetailsArgs) => {
-			console.log('getMovieCredits parent:', parent);
 			return await doGet(`movie/${parent.id}/credits`);
 		},
 		getMovieDetailsRecommendations: async (parent: getMovieDetailsArgs) => {
-			console.log('getMovieDetailsRecommendations parent:', parent);
 			return await doGet(`movie/${parent.id}/recommendations?page=1`);
+		},
+		getMovieDetailsKeywords: async (parent: getMovieDetailsArgs) => {
+			return await doGet(`movie/${parent.id}/keywords`);
 		},
 	},
 };

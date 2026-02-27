@@ -35,7 +35,7 @@ export function MovieDetailsRecommendations() {
 								tablet={4}
 								tabletLandscape={3}
 								desktop={2}>
-								<Card>
+								<Card fullHeight={true}>
 									<Link
 										href={`/movie/detail/${seoFriendlyUrl(rec.title ?? '')}/${rec.id}`}>
 										<img

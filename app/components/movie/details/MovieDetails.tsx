@@ -33,7 +33,7 @@ export function MovieDetails() {
 					<MovieDetailsCrew />
 
 					{/*<MovieDetailsImages />*/}
-					{/*<MovieDetailsKeywords />*/}
+
 					{/*<MovieDetailsMedia />*/}
 					<MovieDetailsRecommendations />
 					{/*<MovieDetailsReleaseDates />*/}
