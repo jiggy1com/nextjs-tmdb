@@ -24,7 +24,7 @@ type Movie {
     video: Boolean!           # Defaults to true
     vote_average: Float!      # Defaults to 0
     vote_count: Int!          # Defaults to 0
-    getMovieCredits: MovieCreditsResponse
+    getMovieDetailsCredits: GetMovieDetailsCreditsResponse
 }
 
 type Genre {
@@ -77,7 +77,7 @@ type GetMovieDetailsResponse {
     video: Boolean!           # Defaults to true
     vote_average: Float!      # Defaults to 0
     vote_count: Int!          # Defaults to 0
-    getMovieCredits: MovieCreditsResponse
+    getMovieDetailsCredits: GetMovieDetailsCreditsResponse
     getMovieDetailsRecommendations: GetMovieDetailsRecommendationsResponse
     getMovieDetailsKeywords: GetMovieDetailsKeywordsResponse
     getMovieDetailsExternalIds: GetMovieDetailsExternalIdsResponse

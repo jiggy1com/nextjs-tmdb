@@ -1,5 +1,5 @@
-query GetMovieCredits($id: Int!) {
-    getMovieCredits(id: $id) {
+query GetMovieDetailsCredits($id: Int!) {
+    getMovieDetailsCredits(id: $id) {
         id
         cast {
             adult

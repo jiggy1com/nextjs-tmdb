@@ -44,7 +44,7 @@ query GetMovieDetails($id: Int!) {
         backdrop_path
         video
 
-        getMovieCredits {
+        getMovieDetailsCredits {
             cast {
                 id
                 name

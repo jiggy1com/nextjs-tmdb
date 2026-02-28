@@ -1,10 +1,10 @@
-type MovieCreditsResponse {
+type GetMovieDetailsCreditsResponse {
     id: Int
-    cast: [MovieCreditCast]
-    crew: [MovieCreditCrew]
+    cast: [MovieDetailsCreditCast]
+    crew: [MovieCreditDetailsCrew]
 }
 
-type MovieCreditCast {
+type MovieDetailsCreditCast {
     adult: Boolean
     gender: Int
     id: Int
@@ -19,7 +19,7 @@ type MovieCreditCast {
     order: Int
 }
 
-type MovieCreditCrew {
+type MovieCreditDetailsCrew {
     adult: Boolean
     gender: Int
     id: Int
@@ -34,5 +34,5 @@ type MovieCreditCrew {
 }
 
 extend type Query {
-    getMovieCredits(id: Int): MovieCreditsResponse!
+    getMovieDetailsCredits(id: Int): GetMovieDetailsCreditsResponse!
 }
