@@ -1,0 +1,10 @@
+query GetMovieDetailsExternalIds($id: Int!) {
+    getMovieDetailsExternalIds(id: $id) {
+        id
+        imdb_id
+        wikidata_id
+        facebook_id
+        instagram_id
+        twitter_id
+    }
+}

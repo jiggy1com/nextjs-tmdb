@@ -6,16 +6,6 @@ import {
 
 // parent, args, context, info
 
-// type anyParentType = unknown;
-//
-// type getUpcomingArgs = {
-// 	page?: number;
-// };
-//
-// type getPopularArgs = {
-// 	page?: number;
-// };
-
 type getMovieDetailsArgs = {
 	id: number;
 };
@@ -24,10 +14,6 @@ type getMoviesArgs = {
 	type: string;
 	page?: number;
 };
-
-// type getServerSideMoviesArgs = {
-// 	page?: number;
-// };
 
 export const movie = {
 	Query: {
@@ -38,22 +24,6 @@ export const movie = {
 		},
 
 		// app endpoints
-		// getNowPlaying: async () => {
-		// 	return await doGet('movie/now_playing');
-		// },
-		// getMoviesPopular: async (_: unknown, args: getPopularArgs) => {
-		// 	return await doGet(`movie/popular?page=${args.page}`);
-		// },
-		// getTopRated: async (_: unknown, args: getServerSideMoviesArgs) => {
-		// 	return await doGet<GetTopRatedResponse>('movie/top_rated', args);
-		// },
-		// getUpcoming: async (
-		// 	_: unknown,
-		// 	args: getServerSideMoviesArgs,
-		// ): Promise<GetUpcomingResponse> => {
-		// 	return await doGet<GetUpcomingResponse>('movie/upcoming', args);
-		// },
-
 		getMovies: async (
 			_: unknown,
 			args: getMoviesArgs,
@@ -79,6 +49,9 @@ export const movie = {
 		},
 		getMovieDetailsKeywords: async (parent: getMovieDetailsArgs) => {
 			return await doGet(`movie/${parent.id}/keywords`);
+		},
+		getMovieDetailsExternalIds: async (parent: getMovieDetailsArgs) => {
+			return await doGet(`movie/${parent.id}/external_ids`);
 		},
 	},
 };

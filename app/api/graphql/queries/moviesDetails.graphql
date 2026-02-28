@@ -86,5 +86,12 @@ query GetMovieDetails($id: Int!) {
                 name
             }
         }
+        getMovieDetailsExternalIds {
+            imdb_id
+            wikidata_id
+            facebook_id
+            instagram_id
+            twitter_id
+        }
     }
 }

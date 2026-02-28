@@ -1,25 +1,23 @@
 import {
 	convertMinutesToHoursAndMinutes,
 	convertNumberWithCommas,
-	dollarFormat,
 	dollarFormatShort,
 	parseDomainFromUrl,
 	quickDateFormat,
-	seoFriendlyUrl,
 } from '@/app/utils/stringHelpers';
 import { useMovieDetails } from '@components/providers/server/MovieDetailsContext';
 import styles from './MovieDetailsSidebar.module.scss';
-import { Container } from '@components/container/Container';
 import Link from 'next/link';
 import { MovieDetailsExternalIds } from '@components/movie/details/MovieDetailsExternalIds';
 import { MovieDetailsKeywords } from '@components/movie/details/MovieDetailsKeywords';
+
 export function MovieDetailsSidebar() {
 	const { movie } = useMovieDetails();
 
 	return (
 		<div className={styles.sidebar}>
 			<MovieDetailsExternalIds />
-
+			<MovieDetailsKeywords />
 			<div className={styles.shortInfo}>
 				{movie.homepage && (
 					<>
@@ -124,10 +122,6 @@ export function MovieDetailsSidebar() {
 					</>
 				)}
 			</div>
-
-			<MovieDetailsKeywords />
-
-			<div></div>
 		</div>
 	);
 }

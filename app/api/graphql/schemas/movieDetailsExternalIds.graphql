@@ -1,0 +1,13 @@
+type GetMovieDetailsExternalIdsResponse {
+    id: Int
+    imdb_id: String
+    wikidata_id: String
+    facebook_id: String
+    instagram_id: String
+    twitter_id: String
+}
+
+
+extend type Query {
+    getMovieDetailsExternalIds(id: Int!): GetMovieDetailsExternalIdsResponse
+}
