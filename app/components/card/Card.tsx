@@ -8,7 +8,7 @@ type CardProps = {
 	className?: string;
 	heading?: string;
 	type?: string;
-	isSidebar?: boolean;
+	isSidebarCard?: boolean;
 	fullHeight?: boolean;
 };
 
@@ -19,7 +19,7 @@ export function Card({
 	addPadding = false,
 	fullHeight = false,
 	heading = '',
-	isSidebar = false,
+	isSidebarCard = false,
 }: CardProps) {
 	const getClassList = () => {
 		const classList = [styles.card];
@@ -36,8 +36,8 @@ export function Card({
 			classList.push(styles.fullHeight);
 		}
 
-		if (isSidebar) {
-			classList.push(styles.sidebar);
+		if (isSidebarCard) {
+			classList.push(styles.sidebarCard);
 		}
 
 		return classList.filter(Boolean).join(' ');

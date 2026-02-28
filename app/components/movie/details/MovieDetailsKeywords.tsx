@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { seoFriendlyUrl } from '@/app/utils/stringHelpers';
 import { GetMovieDetailsKeyword } from '@/app/api/graphql/generated/graphql';
 import styles from './MovieDetailsKeywords.module.scss';
+
 export function MovieDetailsKeywords() {
 	const { movie } = useMovieDetails();
 	const { getMovieDetailsKeywords } = movie ?? {};
@@ -19,7 +20,7 @@ export function MovieDetailsKeywords() {
 	return (
 		<Card
 			heading="Keywords"
-			isSidebar={true}
+			isSidebarCard={true}
 			addBorder={true}
 			addPadding={true}>
 			<div className={styles.keywords}>

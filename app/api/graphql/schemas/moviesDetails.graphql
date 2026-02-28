@@ -80,6 +80,7 @@ type GetMovieDetailsResponse {
     getMovieCredits: MovieCreditsResponse
     getMovieDetailsRecommendations: GetMovieDetailsRecommendationsResponse
     getMovieDetailsKeywords: GetMovieDetailsKeywordsResponse
+    getMovieDetailsExternalIds: GetMovieDetailsExternalIdsResponse
 }
 
 #type getMovieDetailsArgs {
