@@ -10,7 +10,7 @@ import { Section } from '@components/container/Section';
 
 export function MovieDetailsCrew() {
 	const { movie } = useMovieDetails();
-	const crew = movie?.getMovieCredits?.crew?.splice(0, 12) || [];
+	const crew = movie?.getMovieDetailsCredits?.crew?.splice(0, 12) || [];
 
 	return (
 		<Section>

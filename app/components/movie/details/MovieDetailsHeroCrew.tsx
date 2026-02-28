@@ -5,7 +5,7 @@ import { ResponsiveGridItem } from '@components/grid/ResponsiveGridItem';
 
 export function MovieDetailsHeroCrew() {
 	const { movie } = useMovieDetails();
-	const crew = movie?.getMovieCredits?.crew?.slice(0, 6) || [];
+	const crew = movie?.getMovieDetailsCredits?.crew?.slice(0, 6) || [];
 
 	return (
 		<ResponsiveGrid className={styles.crew}>

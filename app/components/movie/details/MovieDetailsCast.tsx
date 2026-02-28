@@ -10,7 +10,7 @@ import { ContainerFluid } from '@components/container/ContainerFluid';
 import { Section } from '@components/container/Section';
 export function MovieDetailsCast() {
 	const { movie } = useMovieDetails();
-	const cast = movie?.getMovieCredits?.cast?.splice(0, 12) || [];
+	const cast = movie?.getMovieDetailsCredits?.cast?.splice(0, 12) || [];
 
 	return (
 		<Section>
